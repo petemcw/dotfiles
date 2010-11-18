@@ -1,0 +1,16 @@
+h1. Description
+
+These are the configuration files for my system home directory.
+
+h2. Installation
+
+bq. git clone git://github.com/petemcw/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+rake install
+
+h2. Environment
+
+This repository is mainly setup for *zsh*.  If you would like to switch to zsh,
+you can do so with the following command.
+
+bq. chsh -s /bin/zsh
