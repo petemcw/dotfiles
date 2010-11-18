@@ -13,7 +13,7 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 
 " Don't use Ex mode, use Q for formatting
-map Q gq
+"map Q gq
 
 " Set default indentation: 4 spaces
 "set expandtab
@@ -176,9 +176,9 @@ nmap <F1> <Esc>
 imap <C-F> <C-R>=expand("%")<CR>
 
 " Maps autocomplete to tab
-imap <Tab> <C-N>
+"imap <Tab> <C-N>
 
-imap <C-L> <Space>=><Space>
+"imap <C-L> <Space>=><Space>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -192,12 +192,12 @@ highlight SpecialKey guifg=#4a4a59
 
 " Local config
 if filereadable(".vimrc.local")
-  source .vimrc.local
+    source .vimrc.local
 endif
 
 " Use Ack instead of Grep when available
 if executable("ack")
-  set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
+    set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
 endif
 
 " Color scheme
@@ -212,9 +212,9 @@ let g:snippetsEmu_key = "<S-Tab>"
 
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
-set completeopt=longest,menu
-set wildmode=list:longest,list:full
-set complete=.,t
+"set completeopt=longest,menu
+"set wildmode=list:longest,list:full
+"set complete=.,t
 
 " case only matters with mixed case expressions
 set ignorecase
