@@ -136,6 +136,11 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <C-J> :m +1 <CR>
 map <C-K> :m -2 <CR>
 
+" Paste mode
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
+
 " Replicate Text Mate's indent/outdent
 nmap <D-[> <<
 nmap <D-]> >>
