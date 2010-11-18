@@ -1,0 +1,8 @@
+.DS_Store
+.svn
+*~
+.*.swp
+.project
+.projectOptions
+.settings
+.buildpath
