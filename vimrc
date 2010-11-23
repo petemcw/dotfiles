@@ -2,6 +2,10 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Setup pathogen plugin for bundles
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
