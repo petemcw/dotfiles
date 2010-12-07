@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Set to the name theme to load.
-export ZSH_THEME="cloud"
+export ZSH_THEME="petemcw"
 
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"
