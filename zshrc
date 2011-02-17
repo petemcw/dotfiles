@@ -23,3 +23,7 @@ source $ZSH/oh-my-zsh.sh
 
 path=($HOME/.bin /usr/local/bin /usr/local/sbin /usr/local/mysql/bin /usr/local/git/bin $path)
 manpath=(/usr/local/man /usr/local/mysql/man /usr/local/git/man $manpath)
+
+# This loads RVM into a shell session
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+rvm ruby-1.9.2-head
