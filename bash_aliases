@@ -10,21 +10,21 @@ alias l="ls -alhF $LS_COLOR_OPTIONS"
 #
 # Search
 #
-alias grep='grep --color -i'
+alias f='find'
 alias g='grep'
+alias grep='grep --color -i'
 # Case-insensitive, exclude .svn folders
 greps(){
-  find . -path '*/.svn' -prune -o -type f -print0 | xargs -0 grep -I -n -e "$1"
+    find . -path '*/.svn' -prune -o -type f -print0 | xargs -0 grep -I -n -e "$1"
 }
-alias f='find'
 
 #
 # Misc. System Aliases
 #
-alias vi='vim'
 alias v='vim'
-alias checkhistory='history |grep'
+alias vi='vim'
 alias ch='history |grep'
+alias checkhistory='history |grep'
 alias diff='diff -ubB'
 alias untar='tar -zxvf'
 alias systail='tail -f /var/log/system.log'
