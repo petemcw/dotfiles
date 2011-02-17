@@ -6,3 +6,5 @@
 .projectOptions
 .settings
 .buildpath
+nbproject
+ssh-aliases.zsh
