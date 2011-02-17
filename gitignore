@@ -8,3 +8,4 @@
 .buildpath
 nbproject
 ssh-aliases.zsh
+rvm/*
