@@ -1,11 +1,11 @@
 require 'rake'
 require 'erb'
 
-desc "install the dot files into user's home directory"
+desc "Install the dot files into user's home directory"
 task :install do
   replace_all = false
   Dir['*'].each do |file|
-    next if %w[Rakefile README.textile LICENSE].include? file
+    next if %w[Rakefile README.md LICENSE].include? file
     
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
       if File.identical? file, File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
