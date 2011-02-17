@@ -12,7 +12,8 @@
 
 	chmod +x ~/.rvm/src/rvm/install
 	~/.rvm/src/rvm/install
-	~/.rvm/bin/rvm install ruby-1.9.2-head
+	source ~/.rvm/scripts/rvm
+	rvm install ruby-1.9.2-head
 
 # Environment #
 
