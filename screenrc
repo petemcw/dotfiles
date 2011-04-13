@@ -1,75 +1,74 @@
 # For a complete list of available commands, see http://bit.ly/jLtj
 
-# Message to display in the status line when activity is detected in a
-# monitored window.
-activity              "activity in %n (%t) [%w:%s]~"
-
-# Detach session on hangup instead of terminating screen completely.
-autodetach            on              # default: on
-
-# When a bell character is sent to a background window, screen displays a
-# notification in the message line. The notification message can be re-defined
-# by this command.
-bell_msg              "bell     in %n (%t) [%w:%s]~"
+# -------------------------------------------------------------------
+# Settings
+# -------------------------------------------------------------------
+crlf off                                # No Microsoft linebreaks
+startup_message off                     # bypass GPL notice (we're aware)
+defscrollback 15000                     # big scrollback
+shell bash                              # don't start login shells
+shelltitle ""                           # no title by default - set in PS1
+defmonitor on                           # turn on monitoring
+activity "activity in %n (%t) [%w:%s]~" # let you know when stuff happens!
+silencewait 15                          # notify when window goes silent
+bell_msg "bell     in %n (%t) [%w:%s]~"
+vbell_msg "bell     in %n (%t) [%w:%s]~"
+vbell on
+nethack off                             # makes error messages cryptic.
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+autodetach on                           # Detach hangup instead of terminating
+defutf8 on
 
 # This command controls the display of the window captions. Normally a caption
 # is only used if more than one window is shown on the display.
-caption               always          "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%?"
-
-# Select line break behavior for copying.
-crlf                  off             # default: off
-
-# Select default utmp logging behavior.
-#deflogin              off             # default: on
-
-# Set default lines of scrollback.
-defscrollback         10000            # default: 100
+caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%?"
 
 # If set to 'on', screen will append to the 'hardcopy.n' files created by the
 # command hardcopy; otherwise, these files are overwritten each time.
-hardcopy_append       on              # default: off
+hardcopy_append on
 
 # This command configures the use and emulation of the terminal's hardstatus
 # line. The type 'lastline' will reserve the last line of the display for the
 # hardstatus. Prepending the word 'always' will force screen to use the type
 # even if the terminal supports a hardstatus line.
-hardstatus            alwayslastline  "%{+b kr}[ %H ] %{ky} Load: %l %-=%{kb} %c  %Y.%m.%d"
-msgwait               15
-
-# Set message displayed on pow_detach (when HUP is sent to screen's parent
-# process).
-pow_detach_msg        "BYE"
-
-# Set the default program for new windows.
-shell                 bash
-
-# Default timeout to trigger an inactivity notify.
-silencewait           30              # default: 30
+hardstatus alwayslastline "%{+b kr}[ %H ] %{ky} Load: %l %-=%{kb} %c  %Y.%m.%d"
 
 # Change text highlighting. See http://bit.ly/11RDGZ
-sorendition           gK
+sorendition gK
 
-# Do NOT display copyright notice on startup.
-startup_message       off             # default: on
+# copy screen clipboard to mac clipboard
+bind p eval "writebuf" "exec sh -c 'cat /tmp/screen-exchange'"
+bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+bind g eval "writebuf" "exec sh -c 'gist -p /tmp/screen-exchange | pbcopy'"
 
-# Set $TERM for new windows. I have more luck with 'linux' than Terminal's
-# default 'xterm-color' (^H problems). Comment out to use the default.
-term                  linux
+# enable bold
+attrcolor b ".I"
 
-# Tweak termcap, terminfo, and termcapinfo  entries for best performance.
-termcap               linux           'AF=\E[3%dm:AB=\E[4%dm'
-termcap               xterm-color     'AF=\E[3%dm:AB=\E[4%dm'
-terminfo              linux           'AF=\E[3%p1%dm:AB=\E[4%p1%dm'
-terminfo              xterm-color     'AF=\E[3%p1%dm:AB=\E[4%p1%dm'
+# allow 256 colors
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
-# Allow xterm / Terminal scrollbars to access the scrollback buffer. This
-# enables the behavior you'd expect, instead of losing the content that scrolls
-# out of the window.
-termcapinfo           linux           ti@:te@
-termcapinfo           xterm-color     ti@:te@
+# xterm understands both im/ic and doesn't have a status line.
+# Note: Do not specify im and ic in the real termcap/info file as
+# some programs (e.g. vi) will not work anymore.
+termcap  xterm 'hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l'
+terminfo xterm 'hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l'
+termcap  xterm-color 'hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l'
+terminfo xterm-color 'hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l'
 
-# Use visual bell instead of audio bell.
-vbell                 on              # default: ???
+# this makes backspace sane on debian systems
+termcapinfo xterm 'bc@:bs@'
+termcapinfo xterm-color 'bc@:bs@'
 
-# Message to be displayed when the visual bell is triggered.
-vbell_msg             " *beep* "
+# 80/132 column switching must be enabled for ^AW to work
+# change init sequence to not switch width
+termcapinfo  xterm 'Z0=\E[?3h:Z1=\E[?3l:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+termcapinfo  xterm-color 'Z0=\E[?3h:Z1=\E[?3l:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+# tell screen that xterm can switch to dark background and has function
+# keys.
+termcapinfo xterm 'VR=\E[?5h:VN=\E[?5l'
+termcapinfo xterm 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
+termcapinfo xterm 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
+termcapinfo xterm-color 'VR=\E[?5h:VN=\E[?5l'
+termcapinfo xterm-color 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
+termcapinfo xterm-color 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
