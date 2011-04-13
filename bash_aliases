@@ -3,9 +3,6 @@
 #
 alias ..='cd ..'
 alias ...='cd ..; cd ..;'
-alias ls="ls -F $LS_COLOR_OPTIONS"
-alias ll="ls -lhF $LS_COLOR_OPTIONS"
-alias l="ls -alhF $LS_COLOR_OPTIONS"
 
 #
 # Search
@@ -24,7 +21,6 @@ greps(){
 alias v='vim'
 alias vi='vim'
 alias ch='history |grep'
-alias checkhistory='history |grep'
 alias diff='diff -ubB'
 alias untar='tar -zxvf'
 alias systail='tail -f /var/log/system.log'
