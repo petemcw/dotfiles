@@ -4,3 +4,21 @@
 [submodule "rvm/src/rvm"]
 	path = rvm/src/rvm
 	url = git://github.com/wayneeseguin/rvm.git
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/bundle/vim-irblack"]
+	path = vim/bundle/vim-irblack
+	url = git://github.com/wgibbs/vim-irblack.git
+[submodule "vim/bundle/vim-json"]
+	path = vim/bundle/vim-json
+	url = git://github.com/leshill/vim-json.git
+[submodule "vim/bundle/vim-cucumber"]
+	path = vim/bundle/vim-cucumber
+	url = git://github.com/tpope/vim-cucumber.git
+[submodule "vim/bundle/sudo.vim"]
+	path = vim/bundle/sudo.vim
+	url = git://github.com/vim-scripts/sudo.vim.git
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git

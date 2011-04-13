@@ -1,149 +1,115 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+" ---------------------------------------------------------------------------
+" General
+" ---------------------------------------------------------------------------
 
 " Setup pathogen plugin for bundles
+filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+set nocompatible                      " essential
+set history=1000                      " lots of command line history
+set cf                                " error files / jumping
+set ffs=unix,dos,mac                  " support these files
+filetype plugin indent on             " load filetype plugin
+set isk+=_,$,@,%,#,-                  " none word dividers
+set viminfo='1000,f1,:100,@100,/20
+set modeline                          " make sure modeline support is enabled
+set autoread                          " reload files (no local changes only)
+set tabpagemax=50                     " open 50 tabs max
 
-set nobackup
-set nowritebackup
-set history=50    " keep 50 lines of command line history
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
+" ---------------------------------------------------------------------------
+" Colors / Theme
+" ---------------------------------------------------------------------------
 
-" Don't use Ex mode, use Q for formatting
-"map Q gq
-
-" Set default indentation: 4 spaces
-"set expandtab
-"set tabstop=4
-"set softtabstop=4
-"set shiftwidth=4
-set ts=4 sts=4 sw=4 expandtab
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-    let &t_Co=256
+if &t_Co > 2 || has("gui_running")
+    if has("terminfo")
+        set t_Co=256
+    endif
     syntax on
     set hlsearch
+    colorscheme ir_black
 endif
 
-" Switch wrap off for everything
-set nowrap
+" ---------------------------------------------------------------------------
+"  Highlight
+" ---------------------------------------------------------------------------
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-    " Enable file type detection.
-    " Use the default filetype settings, so that mail gets 'tw' set to 72,
-    " 'cindent' is on in C files, etc.
-    " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent on
+highlight Comment         ctermfg=DarkGrey guifg=#444444
+highlight StatusLineNC    ctermfg=Black ctermbg=DarkGrey cterm=bold
+highlight StatusLine      ctermbg=Black ctermfg=LightGrey
 
-    " Set File type to 'text' for files ending in .txt
-    autocmd BufNewFile,BufRead *.txt setfiletype text
+" ----------------------------------------------------------------------------
+"   Highlight Trailing Whitespace
+" ----------------------------------------------------------------------------
 
-    " Enable soft-wrapping for text files
-    autocmd FileType text,markdown,html,xhtml,eruby setlocal wrap linebreak nolist
+set list listchars=tab:▸\ ,eol:¬
+highlight SpecialKey ctermfg=DarkGray ctermbg=Black
 
-    " Strip trailing white space on specific files
-    autocmd BufWritePre *.php,*.phtml,*.rb,*.htm,*.html,*.css,*.py,*.js :call <SID>StripTrailingWhitespaces()
+" ----------------------------------------------------------------------------
+"  Backups
+" ----------------------------------------------------------------------------
 
-    " Syntax of these languages is fussy over tabs Vs spaces
-    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
+set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
 
-    " Customisations based on house-style (arbitrary)
-    autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType css setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+" ----------------------------------------------------------------------------
+"  UI
+" ----------------------------------------------------------------------------
 
-    " Treat .rss files as XML
-    autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
+set ruler                  " show the cursor position all the time
+set showcmd                " display incomplete commands
+set nolazyredraw           " turn off lazy redraw
+set number                 " line numbers
+set numberwidth=5
+set wildmenu               " turn on wild menu
+set wildmode=list:longest,full
+set ch=2                   " command line height
+set backspace=2            " allow backspacing over everything in insert mode
+set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
+set shortmess=filtIoOA     " shorten messages
+set report=0               " tell us about changes
+set nostartofline          " don't jump to the start of line when scrolling
 
-    " PHP-specific Highlighting
-    " highlights interpolated variables in SQL strings and does SQL-syntax
-    " highlighting.
-    autocmd FileType php let php_sql_query=1
+" ----------------------------------------------------------------------------
+" Visual Cues
+" ----------------------------------------------------------------------------
 
-    " Highlight HTML inside of PHP strings
-    autocmd FileType php let php_htmlInStrings=1
+set showmatch              " brackets/braces that is
+set mat=5                  " duration to show matching brace (1/10 sec)
+set incsearch              " do incremental searching
+set laststatus=2           " always show the status line
+set ignorecase             " ignore case when searching
+set nohlsearch             " don't highlight searches
+set visualbell             " shut the fuck up
 
-    " discourages use of short tags.
-    autocmd FileType php let php_noShortTags=1
+" ----------------------------------------------------------------------------
+" Text Formatting
+" ----------------------------------------------------------------------------
 
-    " highlight brackets and parentheses
-    autocmd FileType php DoMatchParen
-    autocmd FileType php hi MatchParen ctermbg=blue guibg=lightblue
+set autoindent             " automatic indent new lines
+set smartindent            " be smart about it
+set nowrap                 " do not wrap lines
+set softtabstop=4          " yep, four
+set shiftwidth=4           " ....
+set tabstop=4
+set expandtab              " expand tabs to spaces
+set nosmarttab             " fuck tabs
+set formatoptions+=n       " support for numbered/bullet lists
+set textwidth=80           " wrap at 80 chars by default
+set virtualedit=block      " allow virtual edit in visual block ..
 
-    " auto switch to folder where editing file
-    autocmd BufEnter * cd %:p:h
+" ----------------------------------------------------------------------------
+"  Mappings
+" ----------------------------------------------------------------------------
 
-    " PHP Parser Check
-    autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
+" CTags
+map ,rt :!ctags --extra=+f -R *<CR><CR>
 
-    " Turn on autocompletion
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
-    " Put these in an autocmd group, so that we can delete them easily.
-    augroup vimrcEx
-    au!
-
-    " For all text files set 'textwidth' to 78 characters.
-    " autocmd FileType text setlocal textwidth=78
-
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal g`\"" |
-      \ endif
-
-    " Automatically load .vimrc source when saved
-    autocmd BufWritePost .vimrc source $MYVIMRC
-
-    augroup END
-else
-    set autoindent  " always set autoindenting on
-endif
-
-" Always display the status line
-set laststatus=2
-
-" \ is the leader character
-let mapleader = ","
-
-" Hide search highlighting
-map <Leader>h :set invhls <CR>
-
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Move lines up and down
-map <C-J> :m +1 <CR>
-map <C-K> :m -2 <CR>
-
-" Paste mode
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F2>
+" quickfix mappings
+map <F7>  :cn<CR>
+map <S-F7> :cp<CR>
+map <A-F7> :copen<CR>
 
 " Replicate Text Mate's indent/outdent
 nmap <D-[> <<
@@ -151,92 +117,143 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-"Vertical split then hop to new buffer
-:noremap ,v :vsp^M^W^W
-:noremap ,h :split^M^W^W
+" command-t
+noremap ,t :CommandT<CR>
+noremap ,4 :Ack <cword><CR>
 
-"Make current window the only one
-:noremap ,O :only^M:tabo^M
-:noremap ,o :only^M
+" ack
 
-"Buffer next,previous (ctrl-{n,p})
-:noremap ^N :bn^M
-:noremap ^P :bp^M
+" reflow paragraph with Q in normal and visual mode
+nnoremap Q gqap
+vnoremap Q gq
 
-"Buffer delete (ctrl-c)
-:noremap ^C :bd^M
+" sane movement with wrap turned on
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
 
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+" do not menu with left / right in command line
+cnoremap <Left> <Space><BS><Left>
+cnoremap <Right> <Space><BS><Right>
 
-" Duplicate a selection
-" Visual mode: D
-vmap D y'>p
-
-" Press Shift+P while in visual mode to replace the selection without
-" overwriting the default register
-vmap P p :call setreg('"', getreg('0')) <CR>
-
-" No Help, please
-nmap <F1> <Esc>
-
-" Press ^F from insert mode to insert the current file name
-imap <C-F> <C-R>=expand("%")<CR>
-
-" Maps autocomplete to tab
-"imap <Tab> <C-N>
-
-"imap <C-L> <Space>=><Space>
+" \ is the leader character
+let mapleader = ","
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
-" Use the same symbols as TextMate for tabstops and EOLs
-set list listchars=tab:▸\ ,eol:¬
 
-"Invisible character colors
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
+" ----------------------------------------------------------------------------
+"  Auto Commands
+" ----------------------------------------------------------------------------
 
-" Local config
-if filereadable(".vimrc.local")
-    source .vimrc.local
+" jump to last position of buffer when opening
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |
+                         \ exe "normal g'\"" | endif
+
+" don't use cindent for javascript
+autocmd FileType javascript setlocal nocindent
+
+" ----------------------------------------------------------------------------
+"  LookupFile
+" ----------------------------------------------------------------------------
+
+let g:LookupFile_TagExpr = '".ftags"'
+let g:LookupFile_MinPatLength = 2
+let g:LookupFile_ShowFiller = 0                  " fix menu flashiness
+let g:LookupFile_PreservePatternHistory = 1      " preserve sorted history?
+let g:LookupFile_PreserveLastPattern = 0         " start with last pattern?
+
+nmap <unique> <silent> <D-f> <Plug>LookupFile
+imap <unique> <silent> <D-f> <C-O><Plug>LookupFile
+
+" ----------------------------------------------------------------------------
+"  PATH on MacOS X
+" ----------------------------------------------------------------------------
+
+if system('uname') =~ 'Darwin'
+  let $PATH = $HOME .
+    \ '/usr/local/bin:/usr/local/sbin:' .
+    \ '/usr/pkg/bin:' .
+    \ '/opt/local/bin:/opt/local/sbin:' .
+    \ $PATH
 endif
 
-" Use Ack instead of Grep when available
-if executable("ack")
-    set grepprg=ack\ -H\ --nogroup\ --nocolor\ --ignore-dir=tmp\ --ignore-dir=coverage
-endif
+" ---------------------------------------------------------------------------
+"  sh config
+" ---------------------------------------------------------------------------
 
-" Color scheme
-colorscheme ir_black
+au Filetype sh,bash set ts=4 sts=4 sw=4 expandtab
+let g:is_bash = 1
 
-" Numbers
-set number
-set numberwidth=5
+" ---------------------------------------------------------------------------
+"  Misc mappings
+" ---------------------------------------------------------------------------
 
-" Snippets are activated by Shift+Tab
-let g:snippetsEmu_key = "<S-Tab>"
+map ,f :tabnew <cfile><CR>
+map ,d :e %:h/<CR>
+map ,dt :tabnew %:h/<CR>
 
-" Tab completion options
-" (only complete to the longest unambiguous match, and show a menu)
-"set completeopt=longest,menu
-"set wildmode=list:longest,list:full
-"set complete=.,t
+" ---------------------------------------------------------------------------
+"  Open URL on current line in browser
+" ---------------------------------------------------------------------------
 
-" case only matters with mixed case expressions
-set ignorecase
-set smartcase
-
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
+function! Browser ()
+    let line0 = getline (".")
+    let line = matchstr (line0, "http[^ )]*")
+    let line = escape (line, "#?&;|%")
+    exec ':silent !open ' . "\"" . line . "\""
 endfunction
+map ,w :call Browser ()<CR>
+
+" ---------------------------------------------------------------------------
+"  Strip all trailing whitespace in file
+" ---------------------------------------------------------------------------
+
+function! StripWhitespace ()
+    exec ':%s/ \+$//gc'
+endfunction
+map ,s :call StripWhitespace ()<CR>
+
+" ---------------------------------------------------------------------------
+" File Types
+" ---------------------------------------------------------------------------
+
+au BufRead,BufNewFile *.go         set ft=go
+au BufRead,BufNewFile *.mustache   set ft=mustache
+au BufRead,BufNewFile *.rpdf       set ft=ruby
+au BufRead,BufNewFile *.rxls       set ft=ruby
+au BufRead,BufNewFile *.ru         set ft=ruby
+au BufRead,BufNewFile *.god        set ft=ruby
+au BufRead,BufNewFile *.rtxt       set ft=html spell
+au BufRead,BufNewFile *.sql        set ft=pgsql
+au BufRead,BufNewFile *.rl         set ft=ragel
+au BufRead,BufNewFile *.svg        set ft=svg
+au BufRead,BufNewFile *.haml       set ft=haml
+au BufRead,BufNewFile *.md         set ft=mkd tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.markdown   set ft=mkd tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.ronn       set ft=mkd tw=80 ts=2 sw=2 expandtab
+
+au Filetype gitcommit set tw=68  spell
+au Filetype ruby      set tw=80  ts=2
+au Filetype html,xml,xsl,rhtml source $HOME/.vim/scripts/closetag.vim
+
+au BufNewFile,BufRead *.mustache        setf mustache
+
+" --------------------------------------------------------------------------
+" ManPageView
+" --------------------------------------------------------------------------
+
+let g:manpageview_pgm= 'man -P "/usr/bin/less -is"'
+let $MANPAGER = '/usr/bin/less -is'
+
+" make file executable
+command -nargs=* Xe !chmod +x <args>
+command! -nargs=0 Xe !chmod +x %
