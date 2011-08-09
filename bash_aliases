@@ -32,6 +32,7 @@ alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' 
 alias findport80="netstat -tunpl | awk '/:80/ {print $7}' | cut -d'/' -f 1"
 alias psapache='ps -ylC httpd --sort:rss'
 alias mysqldump='mysqldump --opt -Q --order-by-primary'
+alias screen='screen -U'
 
 # Human-readable filesizes
 alias du='du -h'
