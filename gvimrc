@@ -3,7 +3,6 @@
 " -----------------------------------------------------------
 "
 winpos 0 0
-colorscheme vividchalk
 
 set gfn=DejaVu\ Sans\ Mono:h13
 set anti               " antialiasing
@@ -23,7 +22,7 @@ set transparency=8
 set clipboard+=unnamed
 
 " set color scheme
-colorscheme ir_black
+colorscheme vividchalk
 
 " -----------------------------------------------------------
 "  TABS
