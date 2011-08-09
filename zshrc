@@ -21,8 +21,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-path=($HOME/.bin /usr/local/bin /usr/local/sbin /usr/local/mysql/bin /usr/local/git/bin $path)
+path=($HOME/.bin /usr/local/bin /usr/local/sbin /usr/local/mysql/bin /usr/local/git/bin /Users/prm/.cabal/bin $path)
 manpath=(/usr/local/man /usr/local/mysql/man /usr/local/git/man $manpath)
+
+# Fix Mac OS X delete key issue
+bindkey "^[[3~" delete-char
 
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
