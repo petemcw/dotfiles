@@ -29,4 +29,4 @@ bindkey "^[[3~" delete-char
 
 # This loads RVM into a shell session
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-rvm ruby-1.9.2-head
+rvm ruby-1.9.2
