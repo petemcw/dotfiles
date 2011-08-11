@@ -2,17 +2,13 @@
 
 	git clone git://github.com/petemcw/Dotfiles.git ~/.dotfiles
 	cd ~/.dotfiles
-	git submodule init oh-my-zsh
-	git submodule update oh-my-zsh
-	git submodule init rvm
-	git submodule update rvm
+	git submodule init 
+	git submodule update 
 	rake install
 
 ## Ruby Version Manager ##
 
-	chmod +x ~/.rvm/src/rvm/install
-	~/.rvm/src/rvm/install
-	source ~/.rvm/scripts/rvm
+	bash < <(curl -s https://rvm.beginrescueend.com/install/rvm)
 	rvm install ruby-1.9.2-head
 
 # Environment #
