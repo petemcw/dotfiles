@@ -11,6 +11,8 @@
     ci = commit
     w = whatchanged
     df = diff
+    # Switch to a branch, creating it if necessary
+    go = checkout -B
     unstage = reset HEAD
     show-graph = log --graph --abbrev-commit --pretty=oneline
     promote = !$ZSH/bin/git-promote
@@ -26,10 +28,14 @@
 [core]
     excludesfile = ~/.cvsignore
     pager = less -FRSX
+    whitespace = space-before-tab,indent-with-non-tab,trailing-space
 [apply]
     whitespace = nowarn
 [format]
     pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
 [mergetool]
     keepBackup = false
 [diff]
