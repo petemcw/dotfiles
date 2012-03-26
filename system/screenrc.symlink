@@ -6,7 +6,7 @@
 crlf off                                # No Microsoft linebreaks
 startup_message off                     # bypass GPL notice (we're aware)
 defscrollback 15000                     # big scrollback
-shell zsh                               # don't start login shells
+shell -${SHELL}                         # don't start login shells
 shelltitle ""                           # no title by default - set in PS1
 defmonitor on                           # turn on monitoring
 activity "activity in %n (%t) [%w:%s]~" # let you know when stuff happens!

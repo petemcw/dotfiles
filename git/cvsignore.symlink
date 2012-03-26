@@ -1,0 +1,14 @@
+.DS_Store
+Desktop.ini
+Thumbs.db
+.Spotlight-V100
+.Trashes
+.svn
+._*
+*~
+*.swp
+.project
+.projectOptions
+.settings
+.buildpath
+nbproject
