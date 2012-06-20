@@ -20,6 +20,12 @@ end
 desc "Make a backup of any files that will be replaced (if they exist)"
 task :backup do
   linkables do |linkable, file, target|
+    # Check if non-erb version exists
+    if file =~ /.erb$/
+      target = ENV["HOME"] + "/" + ".#{file.sub('.erb', '')}"
+    end
+
+    # Create backup copy of target file
     if File.exists?(target) || File.symlink?(target)
       `mv "$HOME/.#{file}" "$HOME/.#{file}.backup"`
     end
