@@ -4,3 +4,39 @@
 [submodule "vim/vim.symlink/bundle/vim-colors-solarized"]
 	path = vim/vim.symlink/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized
+[submodule "vim/vim.symlink/bundle/ctrlp"]
+	path = vim/vim.symlink/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim
+[submodule "vim/vim.symlink/bundle/snipmate"]
+	path = vim/vim.symlink/bundle/snipmate
+	url = https://github.com/msanders/snipmate.vim
+[submodule "vim/vim.symlink/bundle/vim-abolish"]
+	path = vim/vim.symlink/bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish
+[submodule "vim/vim.symlink/bundle/vim-commentary"]
+	path = vim/vim.symlink/bundle/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim/vim.symlink/bundle/vim-git"]
+	path = vim/vim.symlink/bundle/vim-git
+	url = https://github.com/tpope/vim-git
+[submodule "vim/vim.symlink/bundle/vim-markdown"]
+	path = vim/vim.symlink/bundle/vim-markdown
+	url = https://github.com/hallison/vim-markdown
+[submodule "vim/vim.symlink/bundle/vim-repeat"]
+	path = vim/vim.symlink/bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim/vim.symlink/bundle/vim-surround"]
+	path = vim/vim.symlink/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/vim.symlink/bundle/vim-unimpaired"]
+	path = vim/vim.symlink/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "vim/vim.symlink/bundle/vim-coffee-script"]
+	path = vim/vim.symlink/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script
+[submodule "vim/vim.symlink/bundle/vim-node"]
+	path = vim/vim.symlink/bundle/vim-node
+	url = https://github.com/mmalecki/vim-node.js
+[submodule "vim/vim.symlink/bundle/scss-syntax"]
+	path = vim/vim.symlink/bundle/scss-syntax
+	url = https://github.com/cakebaker/scss-syntax.vim
