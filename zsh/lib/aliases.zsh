@@ -45,6 +45,9 @@ alias untar='tar -zxvf'
 alias zipcreate='zip -y -r -q'
 alias cp_folder='cp -Rpv'
 alias ssh='ssh -4g -o ServerAliveInterval=60'
+# Remove the hosts that I don't want to keep around- in this case, only
+# keep the first host. Like a boss.
+alias hosts="head -2 ~/.ssh/known_hosts | tail -1 > ~/.ssh/known_hosts"
 
 # Development tools
 alias opendig="dig @208.67.222.222"

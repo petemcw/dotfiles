@@ -36,6 +36,3 @@ if [ ! "$ZSH_THEME" = "" ]
 then
     source "$ZSH/zsh/themes/$ZSH_THEME.zsh-theme"
 fi
-
-# Customize path
-path=($HOME/.bin $HOME/.rvm/bin /usr/local/bin /usr/local/sbin $path)
