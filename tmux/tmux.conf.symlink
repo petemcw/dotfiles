@@ -43,5 +43,8 @@ bind-key -r L resize-pane -R 5
 # Disable mouse activity
 setw -g mode-mouse off
 
+# Enable vi mode for navigating
+setw -g mode-keys vi
+
 # Recommend iTerm2 on OS X with the xterm-256 profile.
 set -g default-terminal "screen-256color"
