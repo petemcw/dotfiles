@@ -15,10 +15,10 @@
     go = checkout -B
     unstage = reset HEAD
     show-graph = log --graph --abbrev-commit --pretty=oneline
-    promote = !$ZSH/bin/git-promote
-    wtf = !$ZSH/bin/git-wtf
+    promote = !$DOTS/bin/git-promote
+    wtf = !$DOTS/bin/git-wtf
     count = !git shortlog -sn
-    rank-contributers = !$ZSH/bin/git-rank-contributers
+    rank-contributers = !$DOTS/bin/git-rank-contributers
 [color]
     ui = auto
     diff = auto
