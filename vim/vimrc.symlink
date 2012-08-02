@@ -114,7 +114,8 @@ vmap <C-Down> ]egv
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " Show hidden characters
-set list listchars=tab:>·,trail:·,nbsp:.,eol:¬
+set listchars=tab:▸\ ,eol:¬,trail:⋅,nbsp:.,extends:❯,precedes:❮
+set showbreak=↪
 
 " Rapidly toggle 'set list'
 nmap <leader>l :set list!<CR>
@@ -133,6 +134,10 @@ nmap <silent> <F6> :set number!<CR>
 
 " Page down with <Space>
 nmap <Space> <PageDown>
+
+" Backups
+set backupdir=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 " Colors
 syntax enable
