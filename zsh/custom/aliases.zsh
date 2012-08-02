@@ -1,12 +1,13 @@
+# Don't expand aliases _before_ completion has finished
+#   like: git comm-[tab]
+setopt COMPLETE_ALIASES
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Reload ZSH config
 alias reload!='source ~/.zshrc'
-
-# Super user
-alias _='sudo'
 
 # Filesystem aliases
 alias ..='cd ..'
