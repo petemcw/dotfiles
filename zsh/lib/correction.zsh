@@ -1,5 +1,6 @@
 setopt CORRECT_ALL
 
+alias sudo='nocorrect sudo'
 alias man='nocorrect man'
 alias mv='nocorrect mv'
 alias vim='nocorrect vim'
