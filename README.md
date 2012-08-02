@@ -4,6 +4,8 @@ Your dotfiles are how you personalize your system. I liked Holman & Nisi's idea
 of breaking these files up in a topical fashion. It makes managing these files
 easier. [Read his post on the subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
+UPDATE: I have incorporated a hybrid version of the above idea while still using Oh-my-zsh.
+
 ## Install
 
 ### Automatic Installation
@@ -47,14 +49,6 @@ There's a few special files in the hierarchy.
   in when you run `rake install`.
 - **topic/\*.completion.sh**: Any files ending in `completion.sh` get loaded
   last so that they get loaded after Zsh autocomplete functions are setup.
-
-## Add-ons
-
-There are a few things we use to make our lives awesome. They're not a required
-dependency, but if you install them they'll make your life better too.
-
-- If you install the excellent [rvm](http://rvm.io) to manage
-  multiple rubies, your current branch will show up in the prompt.
 
 ## Thanks
 
