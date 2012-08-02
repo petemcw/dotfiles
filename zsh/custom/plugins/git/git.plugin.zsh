@@ -57,20 +57,60 @@ alias gsd='git svn dcommit'
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
 #
-function current_branch() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo ${ref#refs/heads/}
-}
+function current_branch() { git_current_branch }
 
 function current_repository() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
   echo $(git remote -v | cut -d':' -f 2)
 }
 
 # these aliases take advantage of the previous function
-alias ggpull='git pull origin $(current_branch)'
+alias ggpull='git pull origin $(git_current_branch)'
 compdef ggpull=git
-alias ggpush='git push origin $(current_branch)'
+alias ggpush='git push origin $(git_current_branch)'
 compdef ggpush=git
-alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
+alias ggpnp='git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
 compdef ggpnp=git
+
+#
+# Help
+#
+function git-help() {
+  echo "Git Custom Aliases Usage"
+  echo
+  echo "  g       = git"
+  echo "  get     = git"
+  echo "  gcl     = git clone"
+  echo "  ga      = git add"
+  echo "  gall    = git add ."
+  echo "  gst/gs  = git status"
+  echo "  gss     = git status -s"
+  echo "  gl      = git pull"
+  echo "  ggpull  = git pull origin \"$(git_current_branch)\""
+  echo "  gp      = git push"
+  echo "  gpo     = git push origin"
+  echo "  ggpush  = git push origin \"$(git_current_branch)\""
+  echo "  ggpnp   = git pull origin \"$(git_current_branch)\" && git push origin \"$(git_current_branch)\""
+  echo "  gd      = git diff"
+  echo "  gdv     = git diff -w \"$@\" | vim -R -"
+  echo "  gup     = git fetch && git rebase"
+  echo "  gc      = git commit -v"
+  echo "  gca     = git commit -v -a"
+  echo "  gci     = git commit --interactive"
+  echo "  grh     = git reset HEAD"
+  echo "  grhh    = git reset HEAD --hard"
+  echo "  gb      = git branch"
+  echo "  gba     = git branch -a"
+  echo "  gdel    = git branch -D"
+  echo "  gsi     = git submodule init"
+  echo "  gsu     = git submodule update"
+  echo "  gcount  = git shortlog -sn"
+  echo "  gcp     = git cherry-pick"
+  echo "  gco     = git checkout"
+  echo "  gcm     = git checkout master"
+  echo "  gexport = git git archive --format zip --output"
+  echo "  gmu     = git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+  echo "  gll     = git log --graph --pretty=oneline --abbrev-commit"
+  echo
+}
