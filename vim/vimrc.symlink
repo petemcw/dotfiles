@@ -142,7 +142,7 @@ set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " Colors
 syntax enable
 let g:solarized_termtrans=1
-set colorcolumn=81
+"set colorcolumn=81
 "set cursorcolumn
 set cursorline
 colorscheme solarized
