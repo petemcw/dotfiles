@@ -12,3 +12,5 @@ Thumbs.db
 .settings
 .buildpath
 nbproject
+*.sublime-project
+*.sublime-workspace
