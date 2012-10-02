@@ -1,3 +1,3 @@
-function c() {
+function p() {
   cd $PROJECTS/$1;
 }
