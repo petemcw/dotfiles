@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Sets OS X defaults by running $HOME/.dotfiles/osx/set-defaults.sh.
+
+exec $HOME/.dotfiles/osx/set-defaults.sh
