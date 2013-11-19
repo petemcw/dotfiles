@@ -1,38 +1,49 @@
-# Sample gitconfig
-#
-
-[hub]
-        protocol = https
 [user]
-        name = AUTHORNAME
-        email = AUTHOREMAIL
+    name = AUTHORNAME
+    email = AUTHOREMAIL 
 [credential]
-        helper = GIT_CREDENTIAL_HELPER
+    helper = GIT_CREDENTIAL_HELPER
+[hub]
+    protocol = https
 [alias]
-        co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributers = !$ZSH/bin/git-rank-contributers
-        count   = !git shortlog -sn
+    co = checkout
+    st = status
+    br = branch
+    ci = commit
+    w  = whatchanged
+    df = diff
+    go = checkout -B
+    unstage = reset HEAD
+    show-graph = log --graph --abbrev-commit --pretty=oneline
+    count = !git shortlog -sn
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
 [core]
-        excludesfile = ~/.gitignore
-        editor = vim
+    editor = vim
+    excludesfile = ~/.cvsignore
+    pager = less -FRSX
+    whitespace = space-before-tab,indent-with-non-tab,trailing-space
 [apply]
-        whitespace = nowarn
+    whitespace = nowarn
+[format]
+    pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
 [mergetool]
-        keepBackup = false
-[difftool]
-        prompt = false
-[help]
-        autocorrect = 1
+    keepBackup = false
+[diff]
+    renames = copies
+    mnemonicprefix = true
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to surpress warning message
-        default = simple
+    # See `git help config` (search for push.default)
+    # for more information on different options of the below setting.
+    #
+    # Setting to git 2.0 default to surpress warning message
+    default = simple
