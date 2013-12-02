@@ -1,0 +1,19 @@
+#
+# This group is read by the server. Use it for options that only affect the
+# server.
+#
+
+[server]
+
+[mysqld]
+
+# Query cache
+query_cache_type            = 1
+query_cache_limit           = 2M
+query_cache_size            = 64M
+
+# InnoDB
+innodb_data_file_path       = ibdata1:1G;ibdata2:512M:autoextend
+innodb_autoextend_increment = 512
+innodb_log_file_size        = 512M
+innodb_buffer_pool_size     = 2G

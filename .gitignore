@@ -1,2 +1,3 @@
 git/gitconfig.symlink
 osx/set-defaults.sh
+mysql/my.cnf.symlink

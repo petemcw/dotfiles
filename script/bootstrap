@@ -72,6 +72,8 @@ setup_osx () {
     sed -e "s/COMPUTERNAME/$osx_computername/g" osx/set-defaults.sh.example > osx/set-defaults.sh
     chmod +x osx/set-defaults.sh
 
+    sed -e "s/HOMEDIR/$HOME/g" mysql/my.cnf.symlink.example > mysql/my.cnf.symlink
+
     success 'osx'
   fi
 }

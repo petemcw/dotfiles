@@ -1,0 +1,11 @@
+# For advice on how to change settings please see
+# http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
+
+[mysqld]
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+#
+# Include all files from the config directory
+#
+!includedir HOMEDIR/.my.cnf.d
