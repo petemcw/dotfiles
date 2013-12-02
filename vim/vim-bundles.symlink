@@ -39,8 +39,8 @@ Bundle 'cakebaker/scss-syntax.vim'
 
 "" UI Additions
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'bling/vim-airline'
-Bundle 'jszakmeister/vim-togglecursor'
+"Bundle 'bling/vim-airline'
+"Bundle 'jszakmeister/vim-togglecursor'
 
 "" Autoclose (, etc
 Bundle 'Townk/vim-autoclose'

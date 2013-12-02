@@ -11,7 +11,16 @@ source $HOME/.vim-bundles
 " ----------------------------------------
 
 " Use UTF-8 as the default buffer encoding
-set enc=utf-8
+set encoding=utf-8
+
+" Enable Powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set laststatus=2
+set noshowmode
+set fillchars+=stl:\ ,stlnc:\
+let g:Powerline_symbols = 'fancy'
 
 " Do not wrap lines
 set nowrap
