@@ -56,6 +56,9 @@ Bundle 'tpope/vim-haml'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 
+"" Better search
+Bundle 'mileszs/ack.vim'
+
 "" Installing plguins the first time
 if has_vundle == 0
     echo 'Installing Bundles, please ignore key map error messages'
