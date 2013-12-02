@@ -131,11 +131,56 @@ nmap <Space> <PageDown>
 " Highight the active cursor line
 set cursorline
 
+" Change cursor shape
+if &term =~ '^xterm'
+  " solid underscore
+  let &t_SI .= "\<Esc>[6 q"
+  " solid vertical bar
+  let &t_EI .= "\<Esc>[4 q"
+  " 1 or 0 -> blinking block
+  " 3 -> blinking underscore
+  " Recent versions of xterm (282 or above) also support
+  " 5 -> blinking vertical bar
+  " 6 -> solid vertical bar
+endif
+
 " Colors
 syntax enable
 let g:solarized_termtrans=1
 set background=dark
 colorscheme solarized
+
+" make external keypad work in terminal vim OSX!
+map <Esc>Oq 1
+map <Esc>Or 2
+map <Esc>Os 3
+map <Esc>Ot 4
+map <Esc>Ou 5
+map <Esc>Ov 6
+map <Esc>Ow 7
+map <Esc>Ox 8
+map <Esc>Oy 9
+map <Esc>Op 0
+map <Esc>On .
+map <Esc>OQ /
+map <Esc>OR *
+map <kPlus> +
+map <Esc>OS -
+map! <Esc>Oq 1
+map! <Esc>Or 2
+map! <Esc>Os 3
+map! <Esc>Ot 4
+map! <Esc>Ou 5
+map! <Esc>Ov 6
+map! <Esc>Ow 7
+map! <Esc>Ox 8
+map! <Esc>Oy 9
+map! <Esc>Op 0
+map! <Esc>On .
+map! <Esc>OQ /
+map! <Esc>OR *
+map! <kPlus> +
+map! <Esc>OS -
 
 " Enable filetype detection
 if has("autocmd")

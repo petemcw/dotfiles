@@ -155,13 +155,38 @@ install_dotfiles
 # If on a Mac, install and setup homebrew
 if [ "$(uname -s)" == "Darwin" ]
 then
+  native_apps=false
   setup_osx
-  info "installing dependencies"
+  info "installing brews"
   if . home/bin.symlink/dots > /tmp/dotfiles-dots 2>&1
   then
-    success "dependencies installed"
+    success "brews installed"
   else
-    fail "error installing dependencies"
+    fail "error installing brews"
+  fi
+
+  user "Run native apps installer: [y]es, [n]o?"
+  read -n 1 action
+
+  case "$action" in
+    y )
+      native_apps=true;;
+    n )
+      native_apps=false;;
+    * )
+      ;;
+  esac
+
+  if [ "$native_apps" == "true" ]
+  then
+    echo ''
+    info "installing native apps"
+    if . homebrew/install-cask.sh > /tmp/dotfiles-casks 2>&1
+    then
+      success "native apps installed"
+    else
+      fail "error installing native apps"
+    fi
   fi
 fi
 

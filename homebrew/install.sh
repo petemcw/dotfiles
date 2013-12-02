@@ -12,10 +12,30 @@ fi
 # update repository
 brew update
 
-# install Homebrew packages
-# 	- GNU core utilities
+# install updated utilities
+# - GNU core utilities
 #	- GNU `find`, `locate`, `updatedb`, `xargs`
 brew install git coreutils findutils grc spark zsh
+
+# common packages
+brew install ack
+brew install ansible
+brew install dnsmasq
+brew install drush
+brew install git-flow
+brew install heroku-toolkit
+brew install htop-osx
+brew install lynx
+brew install nginx
+brew install percona-server
+brew install python
+brew install redis
+brew install sqlite
+brew install tmux
+brew install tree
+brew install vim --env-std --override-system-vim --enable-pythoninterp  --with-ruby --with-perl
+# wget with IRI support
+brew install wget --enable-iri
 
 # remove outdated versions
 brew cleanup
