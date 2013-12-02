@@ -13,6 +13,7 @@ alias reload!='source ~/.zshrc'
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
 # misc. system aliases
+alias ssh='ssh -o ServerAliveInterval=60'
 alias diff='diff -ubB'
 alias untar='tar -zxvf'
 alias zipcreate='zip -y -r -q'
