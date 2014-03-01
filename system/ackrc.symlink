@@ -19,6 +19,6 @@
 --ignore-dir=session
 --type-add=css=.sass,.less,.scss
 --type-add=ruby=.rake,.rsel,.builder,.thor
---type-add=html=.haml,.html.erb,.html.haml
+--type-add=html=.haml,.html.erb,.html.haml,.phtml
 --type-add=js=.js.erb,.coffee
 --type-set=cucumber=.feature

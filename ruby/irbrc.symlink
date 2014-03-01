@@ -2,6 +2,13 @@
 require 'rubygems'
 require 'irb/completion'
 require 'irb/ext/save-history'
+require 'awesome_print'
+AwesomePrint.irb!
+
+if ENV['RAILS_ENV']
+  require 'hirb'
+  Hirb.enable
+end
 
 IRB.conf[:SAVE_HISTORY] = 10000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"

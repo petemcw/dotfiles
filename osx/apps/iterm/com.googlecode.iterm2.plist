@@ -2196,9 +2196,9 @@
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
 	<key>NSWindow Frame Preferences</key>
-	<string>282 205 924 485 0 0 1440 878 </string>
+	<string>894 487 605 485 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>124 563 1342 786 0 0 2560 1418 </string>
+	<string>10 42 1429 826 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>261 577 1342 786 0 0 2560 1418 </string>
 	<key>New Bookmarks</key>
@@ -2946,6 +2946,8 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteFromClipboard</key>
@@ -3002,7 +3004,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-11-25T15:26:16Z</date>
+	<date>2014-02-15T20:28:15Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -3036,14 +3038,18 @@
 	<key>WebKitDefaultFontSize</key>
 	<integer>11</integer>
 	<key>WebKitStandardFont</key>
-	<string>.Lucida Grande UI</string>
+	<string>Lucida Grande</string>
 	<key>WindowNumber</key>
 	<true/>
 	<key>WindowStyle</key>
 	<integer>0</integer>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>findIgnoreCase_iTerm</key>
+	<true/>
+	<key>findRegex_iTerm</key>
+	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20131116</string>
+	<string>1.0.0.20140112</string>
 </dict>
 </plist>

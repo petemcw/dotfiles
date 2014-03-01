@@ -37,6 +37,9 @@ Bundle 'scrooloose/syntastic'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'cakebaker/scss-syntax.vim'
 
+" Disable Markdown folding
+let g:vim_markdown_folding_disabled=1
+
 "" UI Additions
 Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'bling/vim-airline'

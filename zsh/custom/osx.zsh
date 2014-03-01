@@ -21,7 +21,9 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # redis
-alias redis-up="redis-server /usr/local/etc/redis.conf"
+#alias redis-up="redis-server /usr/local/etc/redis.conf"
+alias redis-up="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
+alias redis-down="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
 
 # dns
 alias dns-up="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
@@ -40,3 +42,10 @@ alias php-down="launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonz
 # percona
 alias percona-up="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
 alias percona-down="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
+
+# postgresapp.com
+alias psql="/Applications/Postgres93.app/Contents/MacOS/bin/psql"
+
+# mongodb
+alias mongo-up="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
+alias mongo-down="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
