@@ -40,7 +40,7 @@ link_files () {
 }
 
 setup_gitconfig () {
-  if ! [ -f git/gitconfig.symlink ]
+  if ! [ -f $DOTFILES_ROOT/git/gitconfig.symlink ]
   then
     info 'Setup gitconfig'
 
@@ -55,24 +55,24 @@ setup_gitconfig () {
     user ' - What is your github author email?'
     read -e git_authoremail
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" $DOTFILES_ROOT/git/gitconfig.symlink.example > git/gitconfig.symlink
 
     success 'gitconfig'
   fi
 }
 
 setup_osx () {
-  if ! [ -f osx/set-defaults.sh ]
+  if ! [ -f $DOTFILES_ROOT/osx/set-defaults.sh ]
   then
     info 'Setup OS X'
 
     user ' - What is your computer name?'
     read -e osx_computername
 
-    sed -e "s/COMPUTERNAME/$osx_computername/g" osx/set-defaults.sh.example > osx/set-defaults.sh
-    chmod +x osx/set-defaults.sh
+    sed -e "s/COMPUTERNAME/$osx_computername/g" $DOTFILES_ROOT/osx/set-defaults.sh.example > osx/set-defaults.sh
+    chmod +x $DOTFILES_ROOT/osx/set-defaults.sh
 
-    sed -e "s/HOMEDIR/$HOME/g" mysql/my.cnf.symlink.example > mysql/my.cnf.symlink
+    sed -e "s/HOMEDIR/$HOME/g" $DOTFILES_ROOT/mysql/my.cnf.symlink.example > mysql/my.cnf.symlink
 
     success 'osx'
   fi
@@ -158,7 +158,7 @@ then
   native_apps=false
   setup_osx
   info "installing brews"
-  if . home/bin.symlink/dots > /tmp/dotfiles-dots 2>&1
+  if . $DOTFILES_ROOT/home/bin.symlink/dots > /tmp/dotfiles-dots 2>&1
   then
     success "brews installed"
   else
@@ -181,7 +181,7 @@ then
   then
     echo ''
     info "installing native apps"
-    if . homebrew/install-cask.sh > /tmp/dotfiles-casks 2>&1
+    if . $DOTFILES_ROOT/homebrew/install-cask.sh > /tmp/dotfiles-casks 2>&1
     then
       success "native apps installed"
     else
