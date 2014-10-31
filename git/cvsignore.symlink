@@ -13,6 +13,9 @@
 .settings
 .buildpath
 .vim/bundle/
+.tags
+.tags_sorted_by_file
 nbproject
 Desktop.ini
 Thumbs.db
+sftp-config.json
