@@ -23,6 +23,7 @@ alias fixpermf='find . -type f -exec chmod 644 {} \;'
 alias nsopen='netstat -lptu'
 alias grep="grep -i $GREP_OPTIONS"
 alias history='history 1'
+alias ios="open /Applications/Xcode.app/Contents/Applications/iOS\ Simulator.app"
 
 # directory listing
 alias l='ls -lAh'        # Lists in one column, hidden files.
