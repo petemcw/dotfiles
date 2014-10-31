@@ -2,8 +2,7 @@
 #
 # This installs some native OS X apps
 
-brew tap phinze/homebrew-cask
-brew install brew-cask
+brew install caskroom/cask/brew-cask
 
 function installcask() {
     brew cask install "${@}" 2> /dev/null
@@ -11,6 +10,7 @@ function installcask() {
 
 installcask alfred
 installcask appcleaner
+installcask atom
 installcask bartender
 installcask clipmenu
 installcask colloquy
@@ -20,24 +20,30 @@ installcask dropbox
 installcask f-lux
 installcask firefox
 installcask google-chrome
+installcask google-drive
 installcask handbrake
 installcask hipchat
+installcask infinit
 installcask iterm2
+installcask logitech-harmony
+installcask logitech-control-center
 installcask minecraft
-installcask moom
-installcask plex
+installcask panic-unison
+installcask plex-home-theater
+installcask postgres
 installcask rdio
+installcask remote-desktop-connection
 installcask sequel-pro
 installcask sketchup
 installcask skype
+installcask sonos
 installcask spotify
+installcask strongvpn-client
 installcask sublime-text
 installcask superduper
+installcask the-unarchiver
 installcask transmission
 installcask transmit
-installcask tvshows
-installcask virtualbox
 installcask vlc
-installcask vmware-fusion
 
 exit 0
