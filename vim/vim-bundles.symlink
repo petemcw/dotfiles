@@ -54,6 +54,7 @@ Bundle 'vim-scripts/Align'
 "" Ruby
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-rails'
 
 "" JavaScript
 Bundle 'pangloss/vim-javascript'

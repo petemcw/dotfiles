@@ -6,10 +6,9 @@
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 
 # flush local DNS cache
-# alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias flush="dscacheutil -flushcache"
 
-# clean up LaunchServices to remove duplicates in the “Open With” menu
+# clean up LaunchServices to remove duplicates in the "Open With" menu
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
 # show/hide hidden files in Finder
@@ -21,7 +20,6 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # redis
-#alias redis-up="redis-server /usr/local/etc/redis.conf"
 alias redis-up="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
 alias redis-down="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
 

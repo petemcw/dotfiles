@@ -22,6 +22,7 @@ alias fixpermd='find . -type d -exec chmod 755 {} \;'
 alias fixpermf='find . -type f -exec chmod 644 {} \;'
 alias nsopen='netstat -lptu'
 alias grep="grep -i $GREP_OPTIONS"
+alias history='history 1'
 
 # directory listing
 alias l='ls -lAh'        # Lists in one column, hidden files.
@@ -54,6 +55,3 @@ else
   alias topc='top -o cpu'
   alias topm='top -o vsize'
 fi
-
-# enhanced WHOIS lookups
-alias whois="whois -h whois-servers.net"

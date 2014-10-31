@@ -27,8 +27,13 @@ function myip {
   echo -e "Your public IP is: ${echo_bold_green} $res ${echo_normal}"
 }
 
+# Search through history
+function h() {
+  if [ -z "$*" ]; then history 1; else history 1 | egrep "$@"; fi
+}
+
 # Search through directory contents with grep
-function lsgrep(){
+function lsgrep() {
   ls | grep "$*"
 }
 

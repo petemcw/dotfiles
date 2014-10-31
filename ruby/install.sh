@@ -13,6 +13,6 @@ then
 fi
 
 # install preferred version of Ruby
-rbenv install 2.0.0-p247
+rbenv install 2.1.3
 rbenv rehash
-rbenv global 2.0.0-p247
+rbenv global 2.1.3
