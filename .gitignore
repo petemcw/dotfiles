@@ -1,3 +1,9 @@
 git/gitconfig.symlink
-osx/set-defaults.sh
 mysql/my.cnf.symlink
+osx/set-defaults.sh
+osx/atom.symlink/compile-cache/
+osx/atom.symlink/.node-gyp
+osx/atom.symlink/.storage
+osx/atom.symlink/packages
+osx/atom.symlink/storage
+osx/atom.symlink/themes
