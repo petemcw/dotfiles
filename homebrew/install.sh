@@ -28,7 +28,7 @@ brew install ansible
 brew install dnsmasq
 brew install drush
 brew install git-flow
-brew install heroku-toolkit
+brew install heroku-toolbelt
 brew install htop-osx
 brew install lynx
 brew install mcrypt
