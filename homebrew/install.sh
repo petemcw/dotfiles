@@ -5,9 +5,11 @@
 # check for Homebrew
 if test ! $(which brew)
 then
-  echo "  Installing Homebrew for you."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > /tmp/homebrew-install.log
+  echo "  Installing Homebrew for you.\n"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
 fi
+
+echo "  Updating brews.\n "
 
 # update repository
 brew update
