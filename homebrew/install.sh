@@ -14,9 +14,12 @@ echo "  Updating brews.\n "
 # update repository
 brew update
 
+# taps
+brew tap homebrew/php
+
 # install updated utilities
 # - GNU core utilities
-#	- GNU `find`, `locate`, `updatedb`, `xargs`
+# - GNU `find`, `locate`, `updatedb`, `xargs`
 brew install git coreutils findutils grc spark zsh
 
 # common packages
