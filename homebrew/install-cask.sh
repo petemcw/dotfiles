@@ -14,7 +14,7 @@ installcask bartender
 installcask clipmenu
 installcask colloquy
 installcask dropbox
-installcask f-lux
+installcask flux
 installcask firefox
 installcask google-chrome
 installcask google-drive
