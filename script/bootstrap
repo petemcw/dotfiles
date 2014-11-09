@@ -80,12 +80,14 @@ setup_osx () {
     user ' - What is your computer name?'
     read -e osx_computername
 
+    USERHOME=$(sed -e 's/[\/&]/\\&/g' <<<"$HOME")
+
     sed -e "s/COMPUTERNAME/$osx_computername/g" $DOTFILES_ROOT/osx/set-defaults.sh.example > osx/set-defaults.sh
     chmod +x $DOTFILES_ROOT/osx/set-defaults.sh
 
-    sed -e "s/HOMEDIR/$HOME/g" $DOTFILES_ROOT/mysql/my.cnf.symlink.example > mysql/my.cnf.symlink
+    sed -e "s/HOMEDIR/$USERHOME/g" $DOTFILES_ROOT/mysql/my.cnf.symlink.example > mysql/my.cnf.symlink
 
-    success 'osx'
+    success 'osx defaults set'
   fi
 }
 
