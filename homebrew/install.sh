@@ -21,10 +21,12 @@ brew tap homebrew/php
 # - GNU core utilities
 # - GNU `find`, `locate`, `updatedb`, `xargs`
 brew install git coreutils findutils grc spark zsh
+brew install gnu-sed --default-names
 
 # common packages
 brew install ack
 brew install ansible
+brew install bash-completion
 brew install dnsmasq
 brew install drush
 brew install git-flow
@@ -34,7 +36,12 @@ brew install lynx
 brew install mcrypt
 brew install nginx
 brew install ngrok
+brew install node
 brew install percona-server
+brew install php55
+brew install php55-ioncubeloader
+brew install php55-mcrypt
+brew install php55-redis
 brew install python
 brew install rbenv
 brew install redis
