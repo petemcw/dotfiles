@@ -15,7 +15,8 @@ export SVN_EDITOR='$EDITOR'
 export VISUAL='vim'
 export PAGER='less'
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export GREP_OPTIONS='--color=auto'
+export HOMEBREW_CASK_OPTS='--appdir=/Applications'
 
 #
 # Language
