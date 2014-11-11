@@ -11,12 +11,13 @@ function installcask() {
 installcask appcleaner
 installcask atom
 installcask bartender
+installcask bettertouchtool
 installcask clipmenu
 installcask colloquy
 installcask dropbox
 installcask flux
-installcask firefox
-installcask google-chrome
+#installcask firefox
+#installcask google-chrome
 installcask google-drive
 installcask handbrake
 installcask hipchat
@@ -34,7 +35,6 @@ installcask skype
 installcask sonos
 installcask spotify
 installcask strongvpn-client
-installcask sublime-text
 installcask superduper
 installcask transmission
 installcask transmit
