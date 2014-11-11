@@ -20,30 +20,30 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # redis
-alias redis-up="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
-alias redis-down="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
+alias redis.start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
+alias redis.stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist"
 
 # dns
-alias dns-up="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
-alias dns-down="sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
+alias dns.start="sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
+alias dns.stop="sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist"
 
 # nginx
-alias nginx-up="sudo launchctl load -w /Library/LaunchAgents/homebrew.mxcl.nginx.plist"
-alias nginx-down="sudo launchctl unload -w /Library/LaunchAgents/homebrew.mxcl.nginx.plist"
-alias nginx-reload="/usr/local/bin/nginx -s reload"
+alias nginx.start="sudo launchctl load -w /Library/LaunchAgents/homebrew.mxcl.nginx.plist"
+alias nginx.stop="sudo launchctl unload -w /Library/LaunchAgents/homebrew.mxcl.nginx.plist"
+alias nginx.reload="/usr/local/bin/nginx -s reload"
 alias vhosts="cd /usr/local/etc/nginx/sites-enabled"
 
 # php
-alias php-up="launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist"
-alias php-down="launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist"
+alias php.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
+alias php.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.plist"
 
 # percona
-alias percona-up="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
-alias percona-down="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
+alias percona.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
+alias percona.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
 
 # postgresapp.com
 alias psql="/Applications/Postgres93.app/Contents/MacOS/bin/psql"
 
 # mongodb
-alias mongo-up="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
-alias mongo-down="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
+alias mongo.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
+alias mongo.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
