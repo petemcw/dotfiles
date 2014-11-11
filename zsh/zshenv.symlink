@@ -31,4 +31,4 @@ fi
 # Paths
 #
 
-path=($HOME/.bin $HOME/.rbenv/shims /usr/local/share/python /usr/local/{bin,sbin} /Applications/Postgres93.app/Contents/MacOS/bin $path)
+path=($HOME/.bin $HOME/.rbenv/shims /usr/local/{bin,sbin} /Applications/Postgres93.app/Contents/MacOS/bin $path)
