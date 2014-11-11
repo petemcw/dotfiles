@@ -6,6 +6,9 @@
 [server]
 
 [mysqld]
+# Logging
+general_log = 1
+general_log_file = /usr/local/var/log/mysql/mysql-errors.log
 
 # Query cache
 query_cache_type            = 1
