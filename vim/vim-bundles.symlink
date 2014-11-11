@@ -61,7 +61,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 
 "" Better search
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 
 "" Installing plguins the first time
 if has_vundle == 0

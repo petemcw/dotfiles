@@ -49,6 +49,7 @@ brew install ruby-build
 brew install speedtest_cli
 brew install sqlite
 brew install subversion
+brew install the_silver_searcher
 brew install tmux
 brew install tree
 brew install vim --env-std --override-system-vim --enable-pythoninterp  --with-ruby --with-perl
