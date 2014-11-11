@@ -38,7 +38,7 @@ brew install nginx
 brew install ngrok
 brew install node
 brew install percona-server
-brew install php55
+brew install php55 --with-fpm --without-apache
 brew install php55-ioncubeloader
 brew install php55-mcrypt
 brew install php55-redis
