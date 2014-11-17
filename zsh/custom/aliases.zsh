@@ -12,6 +12,9 @@ alias reload!='source ~/.zshrc'
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
+# Custom SSH alias used for AAI Ansible connections
+alias ash="ssh -p33322 -laugash"
+
 # misc. system aliases
 alias ssh='ssh -o ServerAliveInterval=60'
 alias diff='diff -ubB'
