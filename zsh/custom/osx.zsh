@@ -41,9 +41,6 @@ alias php.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php55.p
 alias percona.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
 alias percona.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.percona-server.plist"
 
-# postgresapp.com
-alias psql="/Applications/Postgres93.app/Contents/MacOS/bin/psql"
-
 # mongodb
 alias mongo.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
 alias mongo.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist"
