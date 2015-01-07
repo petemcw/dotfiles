@@ -18,7 +18,7 @@ brew update
 # - GNU core utilities
 # - GNU `find`, `locate`, `updatedb`, `xargs`
 brew install git coreutils findutils grc spark zsh
-brew install gnu-sed --default-names
+brew install gnu-sed --with-default-names
 
 # common packages
 brew install ack
