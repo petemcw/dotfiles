@@ -185,6 +185,30 @@ then
     fail "error installing brews"
   fi
 
+  user "Run development brew installer: [y]es, [n]o?"
+  read -n 1 dev
+
+  case "$dev" in
+    y )
+      dev_apps=true;;
+    n )
+      dev_apps=false;;
+    * )
+      ;;
+  esac
+
+  if [ "$dev_apps" == "true" ]
+  then
+    echo ''
+    info "installing development brews"
+    if . $DOTFILES_ROOT/homebrew/install-dev.sh > /tmp/dotfiles-dev 2>&1
+    then
+      success "development brews installed"
+    else
+      fail "error installing development brews"
+    fi
+  fi
+
   user "Run native apps installer: [y]es, [n]o?"
   read -n 1 action
 

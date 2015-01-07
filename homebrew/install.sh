@@ -14,9 +14,6 @@ echo "  Updating brews.\n "
 # update repository
 brew update
 
-# taps
-brew tap homebrew/php
-
 # install updated utilities
 # - GNU core utilities
 # - GNU `find`, `locate`, `updatedb`, `xargs`
@@ -25,30 +22,15 @@ brew install gnu-sed --default-names
 
 # common packages
 brew install ack
-brew install ansible
 brew install bash-completion
-brew install dnsmasq
-brew install drush
-brew install git-flow
-brew install heroku-toolbelt
 brew install htop-osx
 brew install lynx
-brew install mcrypt
-brew install nginx
 brew install ngrok
-brew install node
-brew install percona-server
-brew install php55 --with-fpm --without-apache
-brew install php55-ioncubeloader
-brew install php55-mcrypt
-brew install php55-redis
 brew install python
 brew install rbenv
-brew install redis
 brew install ruby-build
 brew install speedtest_cli
 brew install sqlite
-brew install subversion
 brew install the_silver_searcher
 brew install tmux
 brew install tree
