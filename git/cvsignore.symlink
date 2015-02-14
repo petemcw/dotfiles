@@ -12,6 +12,8 @@
 .projectOptions
 .settings
 .buildpath
+.idea
+.phpstorm.meta.php
 .vim/bundle/
 .tags
 .tags_sorted_by_file
