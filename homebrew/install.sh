@@ -36,7 +36,7 @@ brew install tmux
 brew install tree
 brew install vim --env-std --override-system-vim --enable-pythoninterp  --with-ruby --with-perl
 # wget with IRI support
-brew install wget --enable-iri
+brew install wget --with-iri
 
 # remove outdated versions
 brew cleanup
