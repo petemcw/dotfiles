@@ -75,3 +75,12 @@ function server() {
   # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
   python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
+
+function memcpu() {
+    echo "\n*** Top 10 CPU eating processes ***"; 
+    ps auxc | sort -nr -k 3 | head -10;
+    echo "\n";
+    echo "*** TOP 10 memory eating processes ***"; 
+    ps auxc | sort -nr -k 4 | head -10;
+}
+
