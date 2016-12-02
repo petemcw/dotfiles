@@ -1,9 +1,7 @@
-git/gitconfig.symlink
-mysql/my.cnf.symlink
-osx/set-defaults.sh
-osx/atom.symlink/compile-cache/
-osx/atom.symlink/.node-gyp
-osx/atom.symlink/.storage
-osx/atom.symlink/packages
-osx/atom.symlink/storage
-osx/atom.symlink/themes
+.DS_Store*
+backups/
+src/git/gitconfig.copy
+src/vim/vim.symlink/backup/
+src/vim/vim.symlink/bundle/
+src/vim/vim.symlink/swaps/
+src/vim/vim.symlink/undos/

@@ -1,0 +1,8 @@
+version: "2"
+services:
+  dotfiles:
+    build:
+      context: .
+    image: petemcw/dotfiles
+    volumes:
+      - ./src/:/root/.dotfiles/
