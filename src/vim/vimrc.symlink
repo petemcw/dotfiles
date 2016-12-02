@@ -1,0 +1,387 @@
+"" vimrc
+"" -----------------------------------------------------------------------------
+
+set nocompatible
+filetype off
+syntax on
+
+"" Bundles
+"" -----------------------------------------------------------------------------
+
+"" Initialize Vundle
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ap/vim-css-color'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-sensible'
+Plugin 'Townk/vim-autoclose'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'lunaru/vim-twig'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'chase/vim-ansible-yaml'
+
+call vundle#end()
+filetype on
+
+"" Powerline
+"" -----------------------------------------------------------------------------
+
+if has('python')
+  python from powerline.vim import setup as powerline_setup
+  python powerline_setup()
+  python del powerline_setup
+elseif has('python3')
+  python3 from powerline.vim import setup as powerline_setup
+  python3 powerline_setup()
+  python3 del powerline_setup
+endif
+let g:Powerline_symbols = 'fancy'
+
+"" General
+"" -----------------------------------------------------------------------------
+
+set backupskip=/tmp/*          " ┐ Don't create backups
+set backupskip+=/private/tmp/* " ┘ for certain files.
+set backupdir=~/.vim/backup    " Set directory for backup files.
+set directory=~/.vim/swaps     " Set directory for swap files.
+set undodir=~/.vim/undos       " Set directory for undo files.
+set undofile                   " Automatically save undo history.
+
+set autoindent                 " Copy indent to the new line.
+set backspace=indent           " ┐
+set backspace+=eol             " │ Allow `backspace`
+set backspace+=start           " ┘ in insert mode.
+
+set clipboard=unnamed          " ┐
+                               " │ Use the system clipboard
+if has("unnamedplus")          " │ as the default register.
+    set clipboard+=unnamedplus " │
+endif                          " ┘
+
+set cpoptions+=$               " When making a change, don't
+                               " redisplay the line, and instead,
+                               " put a `$` sign at the end of
+                               " the changed text.
+
+set updatetime=250             " Lower update time to 250 ms
+set cursorline                 " Highlight the current line.
+set encoding=utf-8 nobomb      " Use UTF-8 without BOM.
+set history=5000               " Increase command line history.
+set hlsearch                   " Enable search highlighting.
+set ignorecase                 " Ignore case in search patterns.
+set nowrap                     " Don't wrap text by default
+
+set incsearch                  " Highlight search pattern
+                               " as it is being typed.
+
+set laststatus=2               " Always show the status line.
+
+set lazyredraw                 " Do not redraw the screen while
+                               " executing macros, registers
+                               " and other commands that have
+                               " not been typed.
+
+set listchars=tab:▸\           " ┐
+set listchars+=trail:·         " │ Use custom symbols to
+set listchars+=eol:↴           " │ represent invisible characters.
+set listchars+=nbsp:_          " ┘
+
+set magic                      " Enable extended regexp.
+set mousehide                  " Hide mouse pointer while typing.
+set noerrorbells               " Disable error bells.
+
+set nojoinspaces               " When using the join command,
+                               " only insert a single space
+                               " after a `.`, `?`, or `!`.
+
+set nostartofline              " Kept the cursor on the same column.
+set number                     " Show line number.
+
+set numberwidth=3              " Increase the minimal number of
+                               " columns used for the `line number`.
+
+set report=0                   " Report the number of lines changed.
+set ruler                      " Show cursor position.
+
+set scrolloff=5                " When scrolling, keep the cursor
+                               " 5 lines below the top and 5 lines
+                               " above the bottom of the screen.
+
+set shortmess=aAItW            " Avoid all the hit-enter prompts.
+set showcmd                    " Show the command being typed.
+set showmode                   " Show current mode.
+set spelllang=en_us            " Set the spellchecking language.
+
+set smartcase                  " Override `ignorecase` option
+                               " if the search pattern contains
+                               " uppercase characters.
+
+set synmaxcol=2500             " Limit syntax highlighting (this
+                               " avoids the very slow redrawing
+                               " when files contain long lines).
+
+set tabstop=4                  " ┐
+set softtabstop=4              " │ Set global <TAB> settings.
+set shiftwidth=4               " │
+set expandtab                  " ┘
+
+set ttyfast                    " Enable fast terminal connection.
+
+set visualbell                 " ┐
+set noerrorbells               " │ Disable beeping and window flashing
+set t_vb=                      " ┘ https://vim.wikia.com/wiki/Disable_beeping
+
+set wildmenu                   " Enable enhanced command-line
+                               " completion (by hitting <TAB> in
+                               " command mode, Vim will show the
+                               " possible matches just above the
+                               " command line with the first
+                               " match highlighted).
+
+set winminheight=0             " Allow windows to be squashed.
+
+if &term =~ '^xterm'
+  let &t_SI .= "\<Esc>[3 q"    " Set cursor shape to blinking underscore
+endif
+
+"" Colors
+"" -----------------------------------------------------------------------------
+
+"" Set custom configurations for when the Solarized theme is used from Vim's
+"" Terminal mode.
+"" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
+if !has("gui_running")
+  let g:solarized_visibility = "low"
+endif
+
+let hour = strftime("%H")       " ┐
+if 6 <= hour && hour < 18       " │
+  set background=light          " │ Automatically set backgroup based on time
+else                            " │ of day.
+  set background=dark           " │
+endif                           " ┘ http://goo.gl/UcErBh
+
+set t_Co=256                    " Enable full-color support
+colorscheme solarized           " Use custom color scheme.
+
+"" Color 80 column mark and after 120
+let &colorcolumn="80,".join(range(120,999),",")
+
+
+"" Key Maps
+"" -----------------------------------------------------------------------------
+
+"" Remap ':' to ';' - Saves two strokes
+nnoremap ; :
+let mapleader=','
+command -nargs=0 Quit :qa!        " Quit with :Q
+imap jj <ESC>                     " Quick ESC from insert mode
+nmap <leader>w :w!<cr>            " [,w] Fast saves
+map <leader>cs <Esc>:noh<CR>      " [,cs] Clear search.
+
+noremap <tab> <c-w><c-w>          " Tab between buffers
+nmap <leader>b :ls                " [,b] Map the buffer list
+
+nnoremap <C-h> <C-w>h             " ┐
+nnoremap <C-j> <C-w>j             " │
+nnoremap <C-k> <C-w>k             " │ Switch windows with Ctrl + a movement key
+nnoremap <C-l> <C-w>l             " ┘
+
+if bufwinnr(1)                    " ┐
+  nmap Ä <C-W>< <C-W><            " │
+  nmap Ö <C-W>> <C-W>>            " │
+  nmap ö <C-W>- <C-W>-            " │ Resize buffers
+  nmap ä <C-W>+ <C-W>+            " │
+endif                             " ┘
+
+nmap <leader>s<left>   :leftabove  vnew<cr>    " ┐
+nmap <leader>s<right>  :rightbelow vnew<cr>    " │
+nmap <leader>s<up>     :leftabove  new<cr>     " │ Open new buffers
+nmap <leader>s<down>   :rightbelow new<cr>     " ┘
+
+map <Esc>Oq 1                  " ┐
+map <Esc>Or 2                  " │
+map <Esc>Os 3                  " │
+map <Esc>Ot 4                  " │
+map <Esc>Ou 5                  " │
+map <Esc>Ov 6                  " │
+map <Esc>Ow 7                  " │
+map <Esc>Ox 8                  " │
+map <Esc>Oy 9                  " │
+map <Esc>Op 0                  " │
+map <Esc>On .                  " │
+map <Esc>OQ /                  " │
+map <Esc>OR *                  " │ Make external keypad work in terminal
+map <kPlus> +                  " │ for Mac OS
+map <Esc>OS -                  " │
+map! <Esc>Oq 1                 " │
+map! <Esc>Or 2                 " │
+map! <Esc>Os 3                 " │
+map! <Esc>Ot 4                 " │
+map! <Esc>Ou 5                 " │
+map! <Esc>Ov 6                 " │
+map! <Esc>Ow 7                 " │
+map! <Esc>Ox 8                 " │
+map! <Esc>Oy 9                 " │
+map! <Esc>Op 0                 " │
+map! <Esc>On .                 " │
+map! <Esc>OQ /                 " │
+map! <Esc>OR *                 " │
+map! <kPlus> +                 " │
+map! <Esc>OS -                 " ┘
+
+"" Upper/lowercase the word
+nmap <silent> <leader>u mQviwU`Q
+nmap <silent> <leader>l mQviwu`Q
+
+"" Upper/lowercase first character of word
+nmap <silent> <leader>U mQgewvU`Q
+nmap <silent> <leader>L mQgewvu`Q
+
+"" [,lc ] Edit composer.json
+nmap <leader>lc :e composer.json<cr>
+
+"" Find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+"" [,ll ] Rapidly toggle 'set list'
+nmap <leader>ll :set list!<CR>
+
+"" [,pp ] Key for paste mode
+nmap <leader>pp :set paste!<CR>
+
+"" [,nn ] Toggle line numbers
+nmap <leader>nn :set nonumber!<CR>
+
+"" [,W ] Sudo write.
+map <leader>W :w !sudo tee %<CR>
+
+"" [,* ] Search and replace the word under the cursor.
+nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+"" Plugins - Markdown
+"" -----------------------------------------------------------------------------
+
+"" Disable Folding.
+"" https://github.com/plasticboy/vim-markdown#disable-folding
+let g:vim_markdown_folding_disabled=1
+
+"" Highlight YAML frontmatter as used by Jekyll
+let g:vim_markdown_frontmatter=1
+
+
+"" Plugins - Syntastic
+"" -----------------------------------------------------------------------------
+
+  "" Inform Syntastic which checkers to use based on file types.
+  "" https://github.com/scrooloose/syntastic#3-faq
+  let g:syntastic_html_checkers = [ "jshint" ]
+  let g:syntastic_javascript_checkers = [ "jshint" ]
+  let g:syntastic_mode_map = { "mode": "passive" }
+
+"" Helper Functions
+"" -----------------------------------------------------------------------------
+
+  "" Override PHP syntax highligting within DocBlocks
+  "" For use with StanAngeloff/php.vim
+  function! PhpSyntaxOverride()
+    hi! def link phpDocTags  phpDefine
+    hi! def link phpDocParam phpType
+  endfunction
+
+"" Automatic Commands
+"" -----------------------------------------------------------------------------
+
+  "" Enable spell checking in Git commit messages
+  "" ---------------------------------------------------------------------------
+  autocmd FileType gitcommit setlocal spell
+  autocmd BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
+
+  "" PHP Settings
+  "" ---------------------------------------------------------------------------
+  augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+  augroup END
+
+  "" PHP Parsing & Checking commands
+  autocmd FileType php noremap <buffer> <C-M> :w!<CR>:!php %<CR>
+  autocmd FileType php noremap <buffer> <LocalLeader>l :w!<CR>:!php -l %<CR>
+
+  "" Highlight interpolated variables in SQL strings & SQL-syntax highlighting
+  autocmd FileType php let php_sql_query=1
+
+  "" Highlight HTML inside of PHP strings
+  autocmd FileType php let php_htmlInStrings=1
+
+  "" Discourages use of short tags.
+  autocmd FileType php let php_noShortTags=1
+  autocmd FileType php setlocal ts=4 sts=4 sw=4
+
+  "" Strip trailing white space from .php files
+  autocmd BufWritePre *.php :%s/\s\+$//e
+
+  "" Indentation rules
+  autocmd FileType php set expandtab
+
+  "" PHPDoc settings
+  if !exists("g:pdv_cfg_Author")
+    let g:pdv_cfg_Author = "Peter McWilliams <petemcw@gmail.com>"
+  endif
+
+  "" Markdown Settings
+  "" ---------------------------------------------------------------------------
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+  "" Automatically remove trailing whitespace on Markdown files
+  autocmd BufWritePre *.md :%s/\s\+$//e
+
+  "" Also setting text files as Markdown, effectively, as the same rules
+  "" largely apply
+  autocmd BufNewFile,BufReadPost *.txt set filetype=markdown
+
+  "" Javascript
+  "" ---------------------------------------------------------------------------
+
+  "" 2 space indents
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+
+  "" HTML
+  "" ---------------------------------------------------------------------------
+
+  " 4 space indents
+  autocmd FileType html setlocal ts=4 sts=4 sw=4
+
+  "" HAML & SASS
+  "" ---------------------------------------------------------------------------
+  autocmd FileType haml set nowrap
+  autocmd FileType sass set textwidth=0
+
+  "" ---------------------------------------------------------------------------
+  autocmd BufWritePre *.rb :%s/\s\+$//e
+  autocmd BufWritePre *.go :%s/\s\+$//e
+  autocmd BufWritePre *.haml :%s/\s\+$//e
+  autocmd BufWritePre *.html :%s/\s\+$//e
+  autocmd BufWritePre *.scss :%s/\s\+$//e
+  autocmd BufWritePre *.slim :%s/\s\+$//e
+  autocmd BufWritePre *.php :%s/\s\+$//e
+
+"" Local Settings
+"" -----------------------------------------------------------------------------
+
+"" Load local settings if they exist.
+""
+"" [!] The following needs to remain at the end of this file in
+""     order to allow any of the above settings to be overwritten
+""     by the local ones.
+
+if filereadable(glob("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
