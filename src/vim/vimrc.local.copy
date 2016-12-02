@@ -1,0 +1,4 @@
+" Stash your Vim config overrides in ~/.vimrc.local. This means they'll stay
+" out of your main dotfiles repository, but you'll have access to them while
+" editing
+"-------------------------------------------------------------------------------

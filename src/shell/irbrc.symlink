@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'irb/completion'
+require 'irb/ext/save-history'
+
+IRB::Irb.class_eval do
+  def output_value
+    ap @context.last_value
+  end
+end
+
+class Object
+  # list methods which aren't in superclass
+  def local_methods(obj = self)
+    (obj.methods - obj.class.superclass.instance_methods).sort
+  end
+end

@@ -1,0 +1,29 @@
+# Defines environment variables.
+#
+# This file is sourced by all instances of Zsh, and thus, it should be kept as
+# small as possible and should only define environment variables.
+
+# Exports
+export EDITOR="vim"
+export GIT_EDITOR="$EDITOR"
+export SVN_EDITOR="$EDITOR"
+export VISUAL="vim"
+export MANPAGER="less -X"
+export PAGER="less -X"
+export LESS="-F -g -i -M -R -S -w -X -z-4"
+export ARCHFLAGS="-arch x86_64"
+
+# Use custom `less` colors for `man` pages.
+export LESS_TERMCAP_md=$'\e[1;32m'   # Begin bold mode.
+export LESS_TERMCAP_me=$'\e[0m'      # End bold mode.
+
+# Prefer US English and use UTF-8 encoding.
+export LANG="en_US"
+export LC_ALL="en_US.UTF-8"
+
+# Make new shells get the history lines from all previous
+# shells instead of the default "last window closed" history.
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
+export PYTHONIOENCODING="UTF-8"
