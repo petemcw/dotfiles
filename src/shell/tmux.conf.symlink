@@ -1,0 +1,108 @@
+# Recommend iTerm2 on OS X with the xterm-256 profile.
+set -g default-terminal "screen-256color"
+
+# Reset the prefix
+unbind C-b
+set -g prefix C-Space
+bind C-Space send-prefix
+
+# Bind <Space> to enter copy mode
+bind Space copy-mode
+bind C-Space copy-mode
+
+# Reload the .tmux.conf file with Ctrl-r
+bind-key r source-file ~/.tmux.conf \; display-message "Configuration reloaded"
+
+# Start window index of 1 instead of 0
+set-option -g base-index 1
+
+# Start panes at 1 instead of 0. (tmux 1.6 only)
+setw -g pane-base-index 1
+
+# UTF-8 character support in the status bar
+set-option -g status-utf8 on
+set -g status on
+
+# Make delay shorter
+set-option -sg escape-time 0
+
+# Rebind pane splitting
+bind | split-window -h
+bind C-l split-window -h
+bind - split-window -v
+bind C-j split-window -v
+
+# Rebind movement keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Cycle windows with Ctrl-h and Ctrl-l
+bind-key -r C-h select-window -t :-
+bind-key -r C-l select-window -t :+
+
+# Pane re-sizing
+bind-key -r J resize-pane -D 5
+bind-key -r K resize-pane -U 5
+bind-key -r H resize-pane -L 5
+bind-key -r L resize-pane -R 5
+
+# Close window/pane
+bind-key q kill-window
+bind-key C-q kill-window
+bind-key x kill-pane
+bind-key C-x kill-pane
+
+# Enable vi mode for copy-mode
+setw -g mode-keys vi
+
+# More settings to make copy-mode more vim-like
+unbind [
+bind Escape copy-mode
+unbind p
+bind p paste-buffer
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'y' copy-selection
+
+set-option -ga update-environment ' PTTY'
+set-option -g allow-rename off
+setw -g aggressive-resize on
+
+
+#------------------------------------------------------------------------------#
+# Color
+#------------------------------------------------------------------------------#
+
+# default statusbar colors
+set-option -g status-bg colour234
+set-option -g status-fg colour39
+set-option -g status-attr default
+
+# default window title colors
+set-window-option -g window-status-fg colour244
+set-window-option -g window-status-bg default
+#set-window-option -g window-status-attr dim
+
+# active window title colors
+set-window-option -g window-status-current-fg colour39
+set-window-option -g window-status-current-bg default
+#set-window-option -g window-status-current-attr bright
+
+# pane border
+set-option -g pane-border-fg colour245
+set-option -g pane-active-border-fg colour240
+
+# message text
+set-option -g message-bg colour234
+set-option -g message-fg colour39
+
+# pane number display
+set-option -g display-panes-active-colour colour33
+set-option -g display-panes-colour colour166
+
+# clock
+set-window-option -g clock-mode-colour colour39
+
+# Powerline
+source /usr/local/lib/python3.5/dist-packages/powerline/bindings/tmux/powerline.conf

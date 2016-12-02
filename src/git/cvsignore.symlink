@@ -1,0 +1,81 @@
+# Useful `.gitignore` templates:
+# https://github.com/github/gitignore
+
+# Application Meta
+#------------------------------------------------------------------------------#
+*.sublime-project
+*.sublime-workspace
+.project
+.projectOptions
+.settings
+.buildpath
+.idea
+.phpstorm.meta.php
+.vim/bundle/
+.tags
+.tags_sorted_by_file
+nbproject/
+sftp-config.json
+node_modules
+npm-debug.log
+
+# Compiled Source
+#------------------------------------------------------------------------------#
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.com
+*.pyc
+
+# Temporary Files
+#------------------------------------------------------------------------------#
+*.swp
+*.swo
+.*.swp
+.*.swo
+*~
+._*
+.netrwhist
+
+# Packages
+#------------------------------------------------------------------------------#
+# It's better to unpack these files and commit the raw source because
+# git has its own built in compression methods.
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.tar.gz
+*.bzip
+*.xz
+*.lzma
+*.tar
+*.iso
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+
+# Other VCS
+#------------------------------------------------------------------------------#
+.svn/
+
+# Logs and Databases
+#------------------------------------------------------------------------------#
+*.log
+*.sql
+*.sqlite
+
+# OS Generated Files
+#------------------------------------------------------------------------------#
+.DS_Store*
+Icon?
+Thumbs.db
+.Spotlight-V100
+.Trashes
+Desktop.ini
