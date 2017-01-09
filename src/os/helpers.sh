@@ -53,7 +53,8 @@ print_warn() {
 }
 
 print_fail() {
-  print_red "     [✖] $1 $2\n"
+  local message=$(printf "$1" "$2")
+  print_red "     [✖] $message\n"
 }
 
 print_fail_stream() {
