@@ -30,6 +30,8 @@ brews() {
     "7z"
   brew_install "pandoc" \
     "Pandoc"
+  brew_install "peco" \
+    "Peco"
   brew_install "python" \
     "Python"
   brew_install "python3" \
@@ -42,8 +44,8 @@ brews() {
     "SSH Copy"
   brew_install "the_silver_searcher" \
     "The Silver Searcher"
-  brew_install "the-unarchiver" \
-    "The Unarchiever"
+  brew_install "tig" \
+    "Tig"
   brew_install "tmux" \
     "Tmux"
   brew_install "tree" \
