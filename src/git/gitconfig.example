@@ -61,6 +61,7 @@
   tags   = tag -l
   ulc    = reset --soft HEAD~1                      # Undo last commit.
   un     = reset HEAD --
+  up     = pull upstream master
   fuckit = !git reset --hard HEAD && git clean -df
 
   #----------------------------------------------------------------------------#
