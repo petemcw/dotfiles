@@ -31,8 +31,9 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 #------------------------------------------------------------------------------#
 # Composer
 
-alias ci='composer install --no-dev'
-alias cu='composer update --no-dev'
+alias ci='composer install --prefer-dist --no-interaction --no-dev'
+alias cr='composer require --prefer-dist'
+alias cu='composer update --prefer-dist --no-dev'
 
 #------------------------------------------------------------------------------#
 # Render Markdown files in terminal
