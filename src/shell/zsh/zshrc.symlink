@@ -51,7 +51,7 @@ ZSH_CUSTOM=$DOTS/src/shell/zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew compleat docker docker-compose git git-flow heroku n98-magerun rbenv ruby tmux vagrant)
+plugins=(brew compleat docker docker-compose git git-flow heroku rbenv tmux zsh-autosuggestions zsh-syntax-highlighting)
 
 #------------------------------------------------------------------------------#
 
@@ -70,6 +70,9 @@ is_macos() {
 #------------------------------------------------------------------------------#
 
 source $ZSH/oh-my-zsh.sh
+if is_macos; then
+  source /usr/local/etc/profile.d/z.sh
+fi
 
 #------------------------------------------------------------------------------#
 

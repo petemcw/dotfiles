@@ -60,6 +60,8 @@ brews() {
     "Wget"
   brew_install "youtube-dl" \
     "YouTube DL"
+  brew_install "z" \
+    "Z"
   brew_install "zsh" \
     "Zsh"
   brew_install "zsh-completions" \
