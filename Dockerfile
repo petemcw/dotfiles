@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Pete McWilliams <pmcwilliams@augustash.com>
+LABEL maintainer="pmcwilliams@augustash.com"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
