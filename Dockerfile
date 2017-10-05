@@ -15,6 +15,7 @@ RUN locale-gen $LANG && \
 RUN \
   apt-get -yqq update && \
   apt-get -yqq install \
+    apt-transport-https \
     autoconf \
     build-essential \
     curl \

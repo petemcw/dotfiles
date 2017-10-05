@@ -35,7 +35,7 @@ system_add_ppa() {
 }
 
 system_add_source_list() {
-  sudo sh -c "printf 'deb $1' >> '/etc/apt/sources.list.d/$2'"
+  sudo sh -c "printf \"deb $1\ndeb-src $1\n\" >> '/etc/apt/sources.list.d/$2'"
 }
 
 package_installed() {
@@ -74,6 +74,8 @@ install_packages() {
     "Git"
   package_install "lynx" \
     "Lynx"
+  package_install "nodejs" \
+    "Node JS"
   package_install "pandoc" \
     "Pandoc"
   package_install "python-pip" \
@@ -95,6 +97,10 @@ install_packages() {
 main() {
   export DEBIAN_FRONTEND="noninteractive"
   print_title "APT Packages"
+
+  system_add_source_list \
+    "https://deb.nodesource.com/node_7.x xenial main" \
+    "nodesource.list"
 
   system_update
   system_upgrade

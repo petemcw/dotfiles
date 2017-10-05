@@ -24,6 +24,8 @@ brews() {
     "Top Replacement"
   brew_install "lynx" \
     "Lynx"
+  brew_install "node --with-openssl" \
+    "Node JS"
   brew_install "openssl" \
     "OpenSSL"
   brew_install "p7zip" \
@@ -56,6 +58,8 @@ brews() {
     "Vim"
   brew_install "wget --with-iri" \
     "Wget"
+  brew_install "youtube-dl" \
+    "YouTube DL"
   brew_install "zsh" \
     "Zsh"
   brew_install "zsh-completions" \
@@ -81,8 +85,6 @@ brews_dev() {
     "Mcrypt"
   brew_install "nginx --with-http2" \
     "Nginx"
-  brew_install "node --with-openssl" \
-    "Node JS"
   brew_install "percona-server" \
     "Percona Server"
   brew_install "php70 --with-homebrew-curl" \
@@ -123,14 +125,10 @@ brews_native() {
     "Adobe Creative Cloud"
   cask_install "alfred" \
     "Alfred"
-  cask_install "atom" \
-    "Atom.io"
   cask_install "bartender" \
     "Bartender"
   cask_install "clipmenu" \
     "ClipMenu"
-  cask_install "crashplan" \
-    "CrashPlan Backups"
   cask_install "daisydisk" \
     "DaisyDisk"
   cask_install "docker" \
@@ -153,8 +151,6 @@ brews_native() {
     "Logitech Options"
   cask_install "microsoft-office" \
     "Microsoft Office"
-  cask_install "minecraft" \
-    "Minecraft"
   cask_install "moom" \
     "Moom"
   cask_install "ngrok" \
@@ -179,6 +175,8 @@ brews_native() {
     "Transmit"
   cask_install "tunnelbear" \
     "TunnelBear"
+  cask_install "visual-studio-code" \
+    "Visual Studio Code"
   cask_install "vlc" \
     "VLC"
 }
