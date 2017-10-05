@@ -4,5 +4,6 @@ services:
     build:
       context: .
     image: petemcw/dotfiles
+    command: bash -c ~/.dotfiles/src/os/setup.sh
     volumes:
-      - ./src/:/root/.dotfiles/
+      - ./src/:/root/.dotfiles/src/
