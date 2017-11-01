@@ -43,8 +43,8 @@ execute "defaults write com.apple.finder ShowRecentTags -bool false" \
 execute "defaults write -g AppleShowAllExtensions -bool true" \
   "Show all filename extensions"
 
-execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:iconSize 80' ~/Library/Preferences/com.apple.finder.plist \
-      && /usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:iconSize 80' ~/Library/Preferences/com.apple.finder.plist" \
+execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:iconSize 84' ~/Library/Preferences/com.apple.finder.plist \
+      && /usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:iconSize 84' ~/Library/Preferences/com.apple.finder.plist" \
   "Set icon size"
 
 execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:gridSpacing 24' ~/Library/Preferences/com.apple.finder.plist \
@@ -72,9 +72,6 @@ execute "defaults write com.apple.finder ShowStatusBar -bool true" \
 
 execute "defaults write com.apple.finder ShowPathbar -bool true" \
   "Show path bar"
-
-execute "defaults write NSGlobalDomain com.apple.springing.delay -float 0" \
-  "Remove spring-loading delay for directories"
 
 execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true" \
   "Avoid creating .DS_Store files on network volumes"
