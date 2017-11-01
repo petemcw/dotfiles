@@ -69,55 +69,34 @@ brews() {
 }
 
 brews_dev() {
-  brew_install "ansible" \
-    "Ansible"
-  brew_install "dnsmasq" \
-    "DNS Masquerade"
   brew_install "git-flow" \
     "Git Flow"
-  brew_install "git-lfs" \
-    "Git LFS"
   brew_install "heroku-toolbelt" \
     "Heroku Toolbelt"
   brew_install "jq" \
     "JQ"
-  brew_install "lynx" \
-    "Lynx"
   brew_install "mcrypt" \
     "Mcrypt"
-  brew_install "nginx --with-http2" \
+  brew_install "nginx" \
     "Nginx"
   brew_install "percona-server" \
     "Percona Server"
-  brew_install "php70 --with-homebrew-curl" \
-    "PHP 7.0.x" \
+  brew_install "php71 --with-homebrew-curl" \
+    "PHP 7.1.x" \
     "homebrew/php"
-  brew_install "php70-intl" \
-    "PHP 7.0.x INTL extension" \
+  brew_install "php71-intl php71-mcrypt php71-opcache php71-redis php71-yaml" \
+    "PHP 7.1.x extensions" \
     "homebrew/php"
-  brew_install "php70-mcrypt" \
-    "PHP 7.0.x Mcrypt extension" \
-    "homebrew/php"
-  brew_install "php70-opcache" \
-    "PHP 7.0.x OpCache extension" \
-    "homebrew/php"
-  brew_install "php70-redis" \
-    "PHP 7.0.x Redis extension" \
-    "homebrew/php"
-  brew_install "php70-xdebug" \
-    "PHP 7.0.x Xdebug extension" \
-    "homebrew/php"
-  brew_install "php70-yaml" \
-    "PHP 7.0.x YAML extension" \
-    "homebrew/php"
+  brew_install "php-code-sniffer" \
+    "PHP Code Sniffer"
+  brew_install "phpmd" \
+    "PHP Mess Detector"
+  brew_install "postman" \
+    "Postman"
   brew_install "rbenv" \
     "Ruby Version Manager"
-  brew_install "redis" \
-    "Redis"
   brew_install "ruby-build" \
     "Ruby Versions"
-  brew_install "sqlite" \
-    "SQLite"
 }
 
 brews_native() {
@@ -127,10 +106,10 @@ brews_native() {
     "Adobe Creative Cloud"
   cask_install "alfred" \
     "Alfred"
+  cask_install "backblaze" \
+    "Backblaze"
   cask_install "bartender" \
     "Bartender"
-  cask_install "clipmenu" \
-    "ClipMenu"
   cask_install "daisydisk" \
     "DaisyDisk"
   cask_install "docker" \
@@ -141,6 +120,8 @@ brews_native() {
     "Evernote"
   cask_install "flux" \
     "Flux"
+  cask_install "google-backup-and-sync" \
+    "Google Backup"
   cask_install "google-chrome" \
     "Google Chrome"
   cask_install "handbrake" \
@@ -149,25 +130,19 @@ brews_native() {
     "iTerm2"
   cask_install "kindle" \
     "Kindle"
-  cask_install "logitech-options" \
-    "Logitech Options"
   cask_install "microsoft-office" \
     "Microsoft Office"
   cask_install "moom" \
     "Moom"
-  cask_install "ngrok" \
-    "Ngrok"
-  cask_install "phpstorm-eap" \
-    "PHPStorm EAP"
+  cask_install "paste" \
+    "Paste"
   cask_install "sequel-pro" \
     "Sequal Pro"
   cask_install "slack" \
     "Slack"
-  cask_install "sonos" \
-    "Sonos"
   cask_install "spotify" \
     "Spotify"
-  cask_install "sublime-text3" \
+  cask_install "sublime-text" \
     "Sublime Text 3"
   cask_install "superduper" \
     "Superduper!"
@@ -177,6 +152,8 @@ brews_native() {
     "Transmit"
   cask_install "tunnelbear" \
     "TunnelBear"
+  cask_install "tunnelblick" \
+    "Tunnelblick"
   cask_install "visual-studio-code" \
     "Visual Studio Code"
   cask_install "vlc" \
