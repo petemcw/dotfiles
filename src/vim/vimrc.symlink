@@ -9,7 +9,7 @@ syntax on
 "" -----------------------------------------------------------------------------
 
 "" Initialize Vundle
-set rtp+=$HOME/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.vim/bundles/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -49,7 +49,7 @@ let g:Powerline_symbols = 'fancy'
 
 set backupskip=/tmp/*          " ┐ Don't create backups
 set backupskip+=/private/tmp/* " ┘ for certain files.
-set backupdir=~/.vim/backup    " Set directory for backup files.
+set backupdir=~/.vim/backups   " Set directory for backup files.
 set directory=~/.vim/swaps     " Set directory for swap files.
 set undodir=~/.vim/undos       " Set directory for undo files.
 set undofile                   " Automatically save undo history.
@@ -58,12 +58,6 @@ set autoindent                 " Copy indent to the new line.
 set backspace=indent           " ┐
 set backspace+=eol             " │ Allow `backspace`
 set backspace+=start           " ┘ in insert mode.
-
-set clipboard=unnamed          " ┐
-                               " │ Use the system clipboard
-if has("unnamedplus")          " │ as the default register.
-    set clipboard+=unnamedplus " │
-endif                          " ┘
 
 set cpoptions+=$               " When making a change, don't
                                " redisplay the line, and instead,

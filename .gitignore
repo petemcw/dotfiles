@@ -1,7 +1,11 @@
 .DS_Store*
 backups/
 src/git/gitconfig.copy
-src/vim/vim.symlink/backup/
-src/vim/vim.symlink/bundle/
-src/vim/vim.symlink/swaps/
-src/vim/vim.symlink/undos/
+src/vim/vim.symlink/bundles/*
+!src/vim/vim.symlink/bundles/.keep
+src/vim/vim.symlink/backups/*
+!src/vim/vim.symlink/backups/.keep
+src/vim/vim.symlink/swaps/*
+!src/vim/vim.symlink/swaps/.keep
+src/vim/vim.symlink/undos/*
+!src/vim/vim.symlink/undos/.keep
