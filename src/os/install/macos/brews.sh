@@ -91,8 +91,6 @@ brews_dev() {
     "PHP Code Sniffer"
   brew_install "phpmd" \
     "PHP Mess Detector"
-  brew_install "postman" \
-    "Postman"
   brew_install "rbenv" \
     "Ruby Version Manager"
   brew_install "ruby-build" \
@@ -136,6 +134,8 @@ brews_native() {
     "Moom"
   cask_install "paste" \
     "Paste"
+  cask_install "postman" \
+    "Postman"
   cask_install "sequel-pro" \
     "Sequal Pro"
   cask_install "slack" \
