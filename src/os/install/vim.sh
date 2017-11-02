@@ -7,7 +7,7 @@ cd "$DOTFILES_PATH" \
 #------------------------------------------------------------------------------#
 
 install_plugins() {
-  declare -r VUNDLE_DIR="$HOME/.vim/bundle/Vundle.vim"
+  declare -r VUNDLE_DIR="$HOME/.vim/bundles/Vundle.vim"
   declare -r VUNDLE_URL="https://github.com/VundleVim/Vundle.vim"
 
   execute \
@@ -30,7 +30,7 @@ main() {
   printf "\n"
   print_title "Vim"
 
-  if [ ! -f "$HOME/.vim/bundle/Vundle.vim/README.md" ]; then
+  if [ ! -f "$HOME/.vim/bundles/Vundle.vim/README.md" ]; then
     install_plugins
   else
     update_plugins

@@ -10,7 +10,7 @@ syntax on
 
 "" Initialize Vundle
 set rtp+=$HOME/.vim/bundles/Vundle.vim
-call vundle#begin()
+call vundle#begin('~/.vim/bundles')
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'

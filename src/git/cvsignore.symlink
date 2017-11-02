@@ -11,7 +11,7 @@
 .buildpath
 .idea
 .phpstorm.meta.php
-.vim/bundle/
+.vim/bundles/
 .tags
 .tags_sorted_by_file
 nbproject/
