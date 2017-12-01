@@ -87,7 +87,7 @@ function dstop {
 
 # Remove all containers
 function drm {
-  docker rm $(docker ps -a -q)
+  docker rm $(docker ps -a -f status=exited -q)
 }
 
 # Dockerfile build, e.g., dbu petemcw/test
@@ -102,10 +102,17 @@ function dbash {
 
 # Remove all untagged images
 function drmi {
-  docker rmi $(docker images |grep "^<none>" |awk '{ print $3 }')
+  #docker rmi $(docker images |grep "^<none>" |awk '{ print $3 }')
+  docker rmi $(docker images -f dangling=true -q)
 }
 
 # Remove all orphaned volumes (> v1.9)
 function drmv {
   docker volume rm $(docker volume ls -qf dangling=true)
 }
+
+# Remove all volumes by pattern
+function drmvp {
+  docker volume ls |grep "$1" |awk '{print $2}' |xargs docker volume rm
+}
+
