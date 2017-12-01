@@ -88,6 +88,8 @@ install_packages() {
     "Python3 Setup Tools"
   package_install "tmux" \
     "tmux"
+  package_install "vim" \
+    "Vim"
   package_install "zsh" \
     "Zsh"
 }
