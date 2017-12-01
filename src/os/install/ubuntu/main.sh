@@ -58,15 +58,19 @@ package_install() {
 install_packages() {
   package_install "apt-utils" \
     "APT Utilities"
+  package_install "apt-transport-https" \
+    "APT HTTPS Transport"
   package_install "bash-completion" \
     "Bash Completion Scripts"
   package_install "bc" \
     "BC Calculations"
   package_install "build-essential" \
     "Build Essential"
+  package_install "ca-certificates" \
+    "Certificates"
   package_install "curl" \
     "cURL"
-  package_install "docker" \
+  package_install "docker-ce" \
     "Docker"
   package_install "docker-compose" \
     "Docker Compose"
@@ -86,6 +90,8 @@ install_packages() {
     "Python Setup Tools"
   package_install "python3-setuptools" \
     "Python3 Setup Tools"
+  package_install "software-properties-common" \
+    "Common Software Properties"
   package_install "tmux" \
     "tmux"
   package_install "vim" \
@@ -103,6 +109,12 @@ main() {
   system_add_source_list \
     "https://deb.nodesource.com/node_8.x xenial main" \
     "nodesource.list"
+
+  system_add_key "https://download.docker.com/linux/ubuntu/gpg"
+
+  system_add_source_list \
+    "[arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    "docker.list"
 
   system_update
   system_upgrade
