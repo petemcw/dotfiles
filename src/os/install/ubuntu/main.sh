@@ -101,7 +101,7 @@ main() {
   print_title "APT Packages"
 
   system_add_source_list \
-    "https://deb.nodesource.com/node_7.x xenial main" \
+    "https://deb.nodesource.com/node_8.x xenial main" \
     "nodesource.list"
 
   system_update
