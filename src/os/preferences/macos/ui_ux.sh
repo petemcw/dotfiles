@@ -10,12 +10,12 @@ printf "\n"
 print_title "UX/UI preferences"
 
 execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Arbor' \
-      && sudo scutil --set ComputerName 'Arbor' \
-      && sudo scutil --set HostName 'Arbor' \
-      && sudo scutil --set LocalHostName 'Arbor'" \
+      && sudo scutil --set ComputerName 'Banff' \
+      && sudo scutil --set HostName 'Banff' \
+      && sudo scutil --set LocalHostName 'Banff'" \
   "Set computer name"
 
-execute "sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText 'Property of Peter McWilliams. Contact 612-208-3380 if found.'" \
+execute "sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText 'Property of Peter McWilliams. Contact 612-203-1226 if found.'" \
   "Login Screen Note"
 
 execute "defaults write com.apple.menuextra.battery ShowPercent -string 'NO'" \
