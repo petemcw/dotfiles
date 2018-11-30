@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+BREW_PREFIX=$(brew --prefix | sed 's#/#\\\/#g')
+BREW_ARRAY=("5.6","7.0","7.1","7.2")
+PHP_ARRAY=("php@5.6" "php@7.0" "php@7.1" "php@7.2")
+PHP_INSTALLED_ARRAY=()
+PHP_VERSION="php@$1"
+PROFILE="/Users/prm/.zshrc"
+
+# Has the user submitted a version required
+if [[ -z "$1" ]]
+then
+	echo "usage: sphp version"; echo;
+	echo "    version    one of:" ${BREW_ARRAY[@]};
+	exit
+fi
+
+# What versions of php are installed via brew
+for i in ${PHP_ARRAY[*]}
+	do
+		if [[ -n "$(brew ls --versions "$i")" ]]
+		then
+			PHP_INSTALLED_ARRAY+=("$i")
+		fi
+done
+
+# Check that the requested version is supported
+if [[ " ${PHP_ARRAY[*]} " == *"${PHP_VERSION}"* ]]
+then
+	# Check that the requested version is installed
+	if [[ " ${PHP_INSTALLED_ARRAY[*]} " == *"${PHP_VERSION}"* ]]
+	then
+
+		# Switch Shell
+		echo "Switching to ${PHP_VERSION}"
+		echo "Stoping services and switching your shell"
+		for i in ${PHP_INSTALLED_ARRAY[@]}
+		do
+			brew unlink "${i}" >/dev/null 2>&1
+			brew services stop "${i}" >/dev/null 2>&1
+		done
+
+		brew link --force "${PHP_VERSION}" >/dev/null 2>&1
+
+		sed -i "/^path=(\/usr\/local\/opt\/php.*/s/^/#/" "${PROFILE}"
+		sed -i "/path=(\/usr\/local\/opt\/${PHP_VERSION}/s/^#//" "${PROFILE}"
+
+		echo "Starting services"
+		brew services start "${PHP_VERSION}" >/dev/null 2>&1
+
+		exec /bin/zsh
+		source $PROFILE
+
+		echo "You're good!"
+	else
+		echo "Sorry, but ${PHP_VERSION} is not installed via brew. Install it by running: brew install ${PHP_VERSION}"
+	fi
+else
+	echo "You specified an unknown version. PHP Switcher only knows of:" ${BREW_ARRAY[@]}
+fi
