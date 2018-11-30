@@ -81,6 +81,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Paths
 path=($HOME/.bin $HOME/.composer/vendor/bin $HOME/.rbenv/shims /usr/local/{bin,sbin} $path)
+path=(/usr/local/opt/php@7.1/bin /usr/local/opt/php@7.1/sbin $path)
+#path=(/usr/local/opt/php@7.0/bin /usr/local/opt/php@7.0/sbin $path)
+#path=(/usr/local/opt/php@5.6/bin /usr/local/opt/php@5.6/sbin $path)
 
 #------------------------------------------------------------------------------#
 
