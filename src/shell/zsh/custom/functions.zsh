@@ -120,3 +120,28 @@ extract() {
         echo "'$1' is not a valid file"
     fi
 }
+
+#------------------------------------------------------------------------------#
+
+function fd() {
+    if [ "$#" = "0" ] ; then
+        pushd ${HOME} > /dev/null
+    elif [ -f "${1}" ] ; then
+        ${EDITOR} ${1}
+    else
+        pushd "$1" > /dev/null
+    fi
+}
+
+#------------------------------------------------------------------------------#
+
+function bd(){
+    if [ "$#" = "0" ] ; then
+        popd > /dev/null
+    else
+        for i in $(seq ${1})
+        do
+            popd > /dev/null
+        done
+    fi
+}
