@@ -156,7 +156,7 @@ if !has("gui_running")
 endif
 
 let hour = strftime("%H")       " ┐
-if 6 <= hour && hour < 18       " │
+if 6 <= hour && hour < 16       " │
   set background=light          " │ Automatically set backgroup based on time
 else                            " │ of day.
   set background=dark           " │
