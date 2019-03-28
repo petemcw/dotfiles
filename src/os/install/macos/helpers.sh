@@ -20,10 +20,6 @@ homebrew_cleanup() {
   execute \
     "brew cleanup" \
     "Homebrew (cleanup)"
-
-  execute \
-    "brew cask cleanup" \
-    "Homebrew (cask cleanup)"
 }
 
 brew_install() {
@@ -55,18 +51,4 @@ brew_install() {
       "brew $BREW_CMD install $FORMULA_NAME" \
       "$FORMULA_HUMAN_NAME"
   fi
-}
-
-cask_install() {
-  brew_install "$1" \
-    "$2" \
-    "caskroom/cask" \
-    "cask"
-}
-
-font_install() {
-  brew_install "$1" \
-    "$2" \
-    "caskroom/fonts" \
-    "cask"
 }

@@ -4,7 +4,3 @@
 :backtrace: false
 :bulk_threshold: 1000
 :verbose: true
-:sources:
-- https://gemcutter.org
-- https://gems.rubyforge.org/
-- https://gems.github.com/

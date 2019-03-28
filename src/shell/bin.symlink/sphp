@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 BREW_PREFIX=$(brew --prefix | sed 's#/#\\\/#g')
-BREW_ARRAY=("5.6","7.0","7.1","7.2")
-PHP_ARRAY=("php@5.6" "php@7.0" "php@7.1" "php@7.2")
+BREW_ARRAY=("5.6" "7.0" "7.1" "7.2" "7.3")
+PHP_ARRAY=("php@5.6" "php@7.0" "php@7.1" "php@7.2" "php@7.3")
 PHP_INSTALLED_ARRAY=()
 PHP_VERSION="php@$1"
 PROFILE="/Users/prm/.zshrc"

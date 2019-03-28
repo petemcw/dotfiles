@@ -17,26 +17,6 @@ function myip {
 
 #------------------------------------------------------------------------------#
 
-# Makes a directory and changes to it.
-function mkdcd {
-  if [ -n "$*" ]; then
-    mkdir -p "$@"
-    #      └─ make parent directories if needed
-
-    cd "$@" \
-      || exit 1
-  fi
-}
-
-#------------------------------------------------------------------------------#
-
-# Finds files and executes a command on them.
-function find-exec {
-  find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
-}
-
-#------------------------------------------------------------------------------#
-
 # Displays user owned processes status.
 function psu {
   ps -U "${1:-$USER}" -o 'pid,%cpu,%mem,command' "${(@)argv[2,-1]}"
@@ -51,28 +31,6 @@ function memcpu() {
   echo "\n";
   echo "*** TOP 10 memory eating processes ***";
   ps auxc | sort -nr -k 4 | head -10;
-}
-
-#------------------------------------------------------------------------------#
-
-# Create data URI from a file.
-datauri() {
-  local mimeType=""
-
-  if [ -f "$1" ]; then
-    mimeType=$(file -b --mime-type "$1")
-    #                └─ do not prepend the filename to the output
-
-    if [[ $mimeType == text/* ]]; then
-      mimeType="$mimeType;charset=utf-8"
-    fi
-
-    printf "data:%s;base64,%s" \
-      "$mimeType" \
-      "$(openssl base64 -in "$1" | tr -d "\n")"
-  else
-    printf "%s is not a file.\n" "$1"
-  fi
 }
 
 #------------------------------------------------------------------------------#
@@ -121,27 +79,3 @@ extract() {
     fi
 }
 
-#------------------------------------------------------------------------------#
-
-function fd() {
-    if [ "$#" = "0" ] ; then
-        pushd ${HOME} > /dev/null
-    elif [ -f "${1}" ] ; then
-        ${EDITOR} ${1}
-    else
-        pushd "$1" > /dev/null
-    fi
-}
-
-#------------------------------------------------------------------------------#
-
-function bd(){
-    if [ "$#" = "0" ] ; then
-        popd > /dev/null
-    else
-        for i in $(seq ${1})
-        do
-            popd > /dev/null
-        done
-    fi
-}

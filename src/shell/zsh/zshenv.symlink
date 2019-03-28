@@ -27,3 +27,6 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
 export PYTHONIOENCODING="UTF-8"
+
+# Ruby GEMs
+export GEM_HOME="$HOME/.gem"

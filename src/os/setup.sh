@@ -106,7 +106,7 @@ main() {
   "$DOTFILES_PATH/src/os/copy_files.sh"
   "$DOTFILES_PATH/src/os/create_links.sh"
   "$DOTFILES_PATH/src/os/install/main.sh"
-  "$DOTFILES_PATH/src/os/preferences/main.sh"
+  #"$DOTFILES_PATH/src/os/preferences/main.sh"
   "$DOTFILES_PATH/src/os/configure_zsh.sh"
   "$DOTFILES_PATH/src/os/restart.sh"
   exit

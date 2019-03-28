@@ -4,10 +4,25 @@ export ZSH=$HOME/.oh-my-zsh
 # Path to your dotfiles configuration.
 export DOTS=$HOME/.dotfiles
 
+# Configure theme
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir dir_writable vcs newline root_indicator status)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs php_version)
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_ETC_ICON=''
+DEFAULT_USER="prm"
+POWERLEVEL9K_CONTEXT_TEMPLATE="%n on %m"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="double-up"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +66,7 @@ ZSH_CUSTOM=$DOTS/src/shell/zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew compleat docker docker-compose git git-flow heroku rbenv tmux zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(brew compleat docker docker-compose git git-flow heroku tmux zsh-autosuggestions zsh-syntax-highlighting)
 
 #------------------------------------------------------------------------------#
 
@@ -80,8 +95,10 @@ fi
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Paths
-path=($HOME/.bin $HOME/.composer/vendor/bin $HOME/.rbenv/shims /usr/local/{bin,sbin} $path)
-path=(/usr/local/opt/php@7.1/bin /usr/local/opt/php@7.1/sbin $path)
+path=($HOME/.bin $HOME/.composer/vendor/bin $HOME/.rbenv/shims /usr/local/opt/gnu-sed/libexec/gnubin /usr/local/{bin,sbin} $path)
+#path=(/usr/local/opt/php@7.3/bin /usr/local/opt/php@7.3/sbin $path)
+#path=(/usr/local/opt/php@7.2/bin /usr/local/opt/php@7.2/sbin $path)
+#path=(/usr/local/opt/php@7.1/bin /usr/local/opt/php@7.1/sbin $path)
 #path=(/usr/local/opt/php@7.0/bin /usr/local/opt/php@7.0/sbin $path)
 #path=(/usr/local/opt/php@5.6/bin /usr/local/opt/php@5.6/sbin $path)
 
