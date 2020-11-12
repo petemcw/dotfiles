@@ -19,11 +19,13 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-sensible'
 Plugin 'Townk/vim-autoclose'
 Plugin 'StanAngeloff/php.vim'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end()
 filetype on
