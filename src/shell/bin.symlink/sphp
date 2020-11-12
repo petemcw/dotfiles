@@ -1,60 +1,200 @@
 #!/usr/bin/env bash
+################################################################################
+#
+# MacOS Homebrew-based PHP version switcher.
+#
+################################################################################
 
-BREW_PREFIX=$(brew --prefix | sed 's#/#\\\/#g')
-BREW_ARRAY=("5.6" "7.0" "7.1" "7.2" "7.3")
-PHP_ARRAY=("php@5.6" "php@7.0" "php@7.1" "php@7.2" "php@7.3")
-PHP_INSTALLED_ARRAY=()
-PHP_VERSION="php@$1"
-PROFILE="/Users/prm/.zshrc"
+# Define read-only script variables
+# -------------------------------------------------------------------------------
+declare -r SPHP_BREW_PREFIX="$(brew --prefix | sed 's#/#\\\/#g')"
+declare -r SPHP_BREW_ARRAY=("5.6" "7.0" "7.1" "7.2" "7.3" "7.4")
+declare -r SPHP_PHP_ARRAY=("php@5.6" "php@7.0" "php@7.1" "php@7.2" "php@7.3" "php")
+declare -r SPHP_PROFILE="${HOME}/.zshrc"
+declare SPHP_INSTALLED_ARRAY=()
 
-# Has the user submitted a version required
-if [[ -z "$1" ]]
-then
-	echo "usage: sphp version"; echo;
-	echo "    version    one of:" ${BREW_ARRAY[@]};
-	exit
-fi
 
-# What versions of php are installed via brew
-for i in ${PHP_ARRAY[*]}
-	do
-		if [[ -n "$(brew ls --versions "$i")" ]]
-		then
-			PHP_INSTALLED_ARRAY+=("$i")
-		fi
-done
+# Program usage
+# -------------------------------------------------------------------------------
+function _usage() {
+  echo -e "
+$(tput bold)Usage:$(tput sgr0)
+  sphp [options...] <php_version>
 
-# Check that the requested version is supported
-if [[ " ${PHP_ARRAY[*]} " == *"${PHP_VERSION}"* ]]
-then
-	# Check that the requested version is installed
-	if [[ " ${PHP_INSTALLED_ARRAY[*]} " == *"${PHP_VERSION}"* ]]
-	then
+$(tput bold)Options:$(tput sgr0)
+  -l, --list        List available PHP versions
+  -h, --help        Display this help and exit
+"
+}
 
-		# Switch Shell
-		echo "Switching to ${PHP_VERSION}"
-		echo "Stoping services and switching your shell"
-		for i in ${PHP_INSTALLED_ARRAY[@]}
-		do
-			brew unlink "${i}" >/dev/null 2>&1
-			brew services stop "${i}" >/dev/null 2>&1
-		done
+# Available versions
+# -------------------------------------------------------------------------------
+function _versions() {
+  echo -e "Available versions of PHP: ${SPHP_BREW_ARRAY[@]}"
+}
 
-		brew link --force "${PHP_VERSION}" >/dev/null 2>&1
+# Trap Function
+# -------------------------------------------------------------------------------
+# Any actions that should be taken if the script is prematurely
+# exited. Always call this function at the top of your script.
+# -------------------------------------------------------------------------------
+function _trap() {
+  exit 1
+}
 
-		sed -i "/^path=(\/usr\/local\/opt\/php.*/s/^/#/" "${PROFILE}"
-		sed -i "/path=(\/usr\/local\/opt\/${PHP_VERSION}/s/^#//" "${PROFILE}"
+# Exit Function
+# -------------------------------------------------------------------------------
+# Non-destructive exit for when script exits naturally.
+# Add this function at the end of the script.
+#
+# Arguments:
+#   $1 (optional) - Exit code (defaults to 0)
+# -------------------------------------------------------------------------------
+function clean_exit() {
+  trap - INT TERM EXIT
+  exit ${1:-0}
+}
 
-		echo "Starting services"
-		brew services start "${PHP_VERSION}" >/dev/null 2>&1
+# Parse Program Options
+# -------------------------------------------------------------------------------
+function parse_options() {
+  # iterate over options
+  # breaking -ab into -a -b when needed and --foo=bar into --foo bar
+  local opt_string=h
+  unset options
+  while (($#)); do
+    case $1 in
+      # if option is of type -ab
+      -[!-]?*)
+        # loop over each character starting with the second
+        for ((i = 1; i < ${#1}; i++)); do
+          c=${1:i:1}
+          options+=("-$c") # add current char to options
+          # if option takes a required argument, and it's not the last char make
+          # the rest of the string its argument
+          if [[ "${opt_string}" == *"$c:"* && ${1:i+1} ]]; then
+            options+=("${1:i+1}")
+            break
+          fi
+        done
+        ;;
+      # if option is of type --foo=bar
+      --?*=*) options+=("${1%%=*}" "${1#*=}") ;;
+      # add --endopts for --
+      --) options+=(--endopts) ;;
+      # otherwise, nothing special
+      *) options+=("${1}") ;;
+    esac
+    shift
+  done
+  set -- "${options[@]}"
+  unset options
 
-		exec /bin/zsh
-		source $PROFILE
+  # read the options and set stuff
+  while [[ ${1-} == -?* ]]; do
+    case $1 in
+      -h | --help)
+        _usage >&2
+        clean_exit
+        ;;
+      -l | --list)
+        _versions >&2
+        clean_exit
+        ;;
+      --endopts)
+        shift
+        break
+        ;;
+      *)
+        echo "sphp: invalid option '${1}'"
+        exit 1
+      ;;
+    esac
+    shift
+  done
+  # store the remaining user input as arguments
+  ARGS+=("$@")
+}
 
-		echo "You're good!"
-	else
-		echo "Sorry, but ${PHP_VERSION} is not installed via brew. Install it by running: brew install ${PHP_VERSION}"
-	fi
-else
-	echo "You specified an unknown version. PHP Switcher only knows of:" ${BREW_ARRAY[@]}
-fi
+# Main Program
+# -------------------------------------------------------------------------------
+function main_run() {
+  local REQUESTED_VERSION="php@${ARGS}"
+
+  if [[ -z "${ARGS}" ]]; then
+    _usage
+    clean_exit
+  fi
+
+  # check that ZSH is being used
+  if [ -z "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+    echo "sphp: sorry, this script assumes you are using ZSH."
+    clean_exit 1
+  fi
+
+  # get which versions the user has installed
+  for i in ${SPHP_PHP_ARRAY[*]}; do
+    if [[ -n "$(brew ls --versions "${i}")" ]]; then
+      SPHP_INSTALLED_ARRAY+=("${i}")
+    fi
+  done
+
+  # check the specified version is both supported and installed
+  if [[ " ${SPHP_PHP_ARRAY[*]} " == *"${REQUESTED_VERSION}"* ]] && [[ "${SPHP_INSTALLED_ARRAY[*]}" == *"${REQUESTED_VERSION}"* ]]; then
+    echo "Switching to ${REQUESTED_VERSION}"
+
+    echo "Stopping brew services..."
+    for i in ${SPHP_INSTALLED_ARRAY[@]}; do
+      brew unlink "${i}" >/dev/null 2>&1
+      brew services stop "${i}" >/dev/null 2>&1
+    done
+    brew link --force "${PHP_VERSION}" >/dev/null 2>&1
+
+    echo "Switching your shell variables..."
+    if [[ ! -f "${SPHP_PROFILE}" ]]; then
+      echo "sphp: sorry, this script assumes your profile is ${SPHP_PROFILE}."
+      clean_exit 1
+    else
+      sed -i "/^path=(\/usr\/local\/opt\/php.*/s/^/#/" "${SPHP_PROFILE}"
+      sed -i "/path=(\/usr\/local\/opt\/${REQUESTED_VERSION}/s/^#//" "${SPHP_PROFILE}"
+    fi
+
+    echo "Starting brew services..."
+    brew services start "${REQUESTED_VERSION}" >/dev/null 2>&1
+
+    echo "You're good to go!"
+    exec /bin/zsh
+    source "${SPHP_PROFILE}"
+  else
+    echo "sphp: ${REQUESTED_VERSION} is not available."
+    echo ""
+    echo "Try installing it by running: brew install ${REQUESTED_VERSION}"
+    clean_exit 1
+  fi
+}
+
+################################################################################
+#
+# RUN THE SCRIPT
+# Nothing should be edited below this block.
+#
+################################################################################
+
+# trap bad exits with your cleanup function
+trap _trap EXIT INT TERM SIGINT SIGQUIT
+
+# trap errors in subshells and functions
+set -o errtrace
+
+# bash will remember & return the highest exitcode in a chain of pipes
+set -o pipefail
+
+# parse arguments passed to script
+parse_options "$@"
+
+# main script run
+main_run
+
+# clean exit
+clean_exit
+
