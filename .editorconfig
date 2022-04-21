@@ -1,26 +1,27 @@
-# For more information about the configurations used
-# in this file, please see the EditorConfig documentation.
-#
-# http://editorconfig.org
+# Configuration normalization
+# @see http://editorconfig.org/
 
+# This is the top-most .editorconfig file; do not search in parent directories.
 root = true
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+# All files.
 [*]
-
 charset = utf-8
 end_of_line = lf
-indent_size = 2
+indent_size = 4
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+[composer.{json,lock}]
+indent_size = 4
+
+[*.{bash,cnf,conf,ini,sh}]
+indent_size = 4
+
+[*.{js,less,yml}]
+indent_size = 2
 
 [*.md]
-
-# Markdown uses the trailing whitespaces.
-# https://daringfireball.net/projects/markdown/syntax#block
-
+indent_size = 4
 trim_trailing_whitespace = false

@@ -54,12 +54,12 @@ bind-key x kill-pane
 bind-key C-x kill-pane
 
 # Scroll up/down by 1 line, half screen, whole screen
-bind -T copy-mode-vi M-Up              send-keys -X scroll-up
-bind -T copy-mode-vi M-Down            send-keys -X scroll-down
-bind -T copy-mode-vi M-PageUp          send-keys -X halfpage-up
-bind -T copy-mode-vi M-PageDown        send-keys -X halfpage-down
-bind -T copy-mode-vi PageDown          send-keys -X page-down
-bind -T copy-mode-vi PageUp            send-keys -X page-up
+bind -T copy-mode-vi M-Up send-keys -X scroll-up
+bind -T copy-mode-vi M-Down send-keys -X scroll-down
+bind -T copy-mode-vi M-PageUp send-keys -X halfpage-up
+bind -T copy-mode-vi M-PageDown send-keys -X halfpage-down
+bind -T copy-mode-vi PageDown send-keys -X page-down
+bind -T copy-mode-vi PageUp send-keys -X page-up
 
 # When scrolling with mouse wheel, reduce number of scrolled rows per tick to "2" (default is 5)
 bind -T copy-mode-vi WheelUpPane select-pane \; send-keys -X -N 2 scroll-up
@@ -77,7 +77,6 @@ bind p paste-buffer
 set-option -ga update-environment ' PTTY'
 set-option -g allow-rename off
 setw -g aggressive-resize on
-
 
 #------------------------------------------------------------------------------#
 # Color
@@ -112,4 +111,3 @@ set-option -g display-panes-colour colour166
 
 # clock
 set-window-option -g clock-mode-colour colour39
-

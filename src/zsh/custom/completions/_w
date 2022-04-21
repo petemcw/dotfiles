@@ -1,0 +1,19 @@
+#compdef w
+
+_w() {
+    local curcontext="$curcontext" state line
+    local workspaces_path="${WORKSPACES_PATH:-${HOME}/Projects/_workspaces}"
+
+    _arguments '1: :->workspace_file'
+    integer ret=1
+
+    case $state in
+    workspace_file)
+        _path_files -g "*.code-workspace(:r)" -W "${workspaces_path}" -/ && ret=0
+        ;;
+    esac
+
+    return ret
+}
+
+_w "$@"

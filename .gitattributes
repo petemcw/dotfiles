@@ -2,3 +2,11 @@
 # https://git-scm.com/docs/gitattributes#_end_of_line_conversion
 
 * text=auto
+*.sh text eol=lf
+*.eot binary
+*.jpg binary
+*.otf binary
+*.png binary
+*.ttf binary
+*.woff binary
+*.woff2 binary

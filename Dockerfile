@@ -1,38 +1,53 @@
-FROM ubuntu:16.04
-LABEL maintainer="pmcwilliams@augustash.com"
+FROM amd64/ubuntu:20.04
+LABEL maintainer="Pete McWilliams <petemcw@gmail.com>"
 
 # Let the container know that there is no tty
-ENV DEBIAN_FRONTEND noninteractive
-ENV TERM xterm-256color
+ENV TRIGGER_REBUILD=2
+ENV \
+    DEBIAN_FRONTEND="noninteractive" \
+    GIT_AUTHOR_EMAIL="petemcw@gmail.com" \
+    GIT_AUTHOR_NAME="Pete McWilliams" \
+    LANG="en_US.UTF-8" \
+    LANGUAGE="en_US.UTF-8" \
+    TERM="xterm-256color" \
+    TZ="America/Chicago"
 
-# Set locale to UTF-8
-ENV LANGUAGE en_US.UTF-8
-ENV LANG en_US.UTF-8
-RUN locale-gen $LANG && \
-  /usr/sbin/update-locale LANG=$LANG
-
-# Install
+# packages & configure
+ENV TRIGGER_REBUILD_INSTALL=1
 RUN \
-  apt-get -yqq update && \
-  apt-get -yqq install \
-    apt-transport-https \
-    autoconf \
-    build-essential \
-    curl \
-    git \
-    lsb-release \
-    python \
-    python-setuptools \
-    python-dev \
-    sudo \
-    tmux \
-    vim \
-    wget \
-    zsh && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    echo "**** install runtime packages ****" && \
+    DEBIAN_FRONTEND=noninteractive apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -qqy \
+        apt-transport-https \
+        autoconf \
+        build-essential \
+        curl \
+        git \
+        lsb-release \
+        python \
+        python-setuptools \
+        python-dev \
+        sudo \
+        tmux \
+        vim \
+        wget \
+        zsh && \
+    ln -nfs /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    echo "**** cleanup ****" && \
+    apt-get clean && \
+    rm -rf \
+        /tmp/* \
+        /var/lib/apt/lists/* \
+        /var/tmp/*
 
-WORKDIR /root
+# user & files
+ENV TRIGGER_REBUILD_COPY=5
+RUN \
+    echo "**** adding non-root user ****" && \
+    useradd -rm -d /home/linuxbrew -s /bin/bash -g root -G sudo -u 1001 -p "$(openssl passwd -6 linuxbrew)" linuxbrew
+USER linuxbrew
+WORKDIR /home/linuxbrew
+COPY . /home/linuxbrew/.dotfiles/
 
 # Command to run
 CMD [ "/bin/zsh" ]

@@ -1,10 +1,8 @@
+.dockerignore
 .git
+.gitattributes
 .gitignore
-backups/
 docker-compose.yml
 Dockerfile
 LICENSE
 README.md
-src/git/gitconfig.symlink
-src/os/prefs/macos/defaults.sh
-src/shell/localrc.symlink

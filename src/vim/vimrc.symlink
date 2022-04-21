@@ -5,130 +5,128 @@ set nocompatible
 filetype off
 syntax on
 
-"" Bundles
+"" Plugins
 "" -----------------------------------------------------------------------------
 
-"" Initialize Vundle
-set rtp+=$HOME/.vim/bundles/Vundle.vim
-call vundle#begin('~/.vim/bundles')
+"" Initialize plugins
+call plug#begin('~/.vim/plugs')
+Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'StanAngeloff/php.vim'
+Plug 'Townk/vim-autoclose'
+Plug 'tpope/vim-sensible'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'Yggdroot/indentLine'
+call plug#end()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'ap/vim-css-color'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-sensible'
-Plugin 'Townk/vim-autoclose'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'Yggdroot/indentLine'
-
-call vundle#end()
 filetype on
 
 "" General
 "" -----------------------------------------------------------------------------
 
-set backupskip=/tmp/*          " ┐ Don't create backups
-set backupskip+=/private/tmp/* " ┘ for certain files.
-set backupdir=~/.vim/backups   " Set directory for backup files.
-set directory=~/.vim/swaps     " Set directory for swap files.
-set undodir=~/.vim/undos       " Set directory for undo files.
-set undofile                   " Automatically save undo history.
+set backupskip=/tmp/*                           " ┐ Don't create backups
+set backupskip+=/private/tmp/*                  " ┘ for certain files.
+set backupdir=~/.vim/backups                    " Set directory for backup files.
+set directory=~/.vim/swaps                      " Set directory for swap files.
+set undodir=~/.vim/undos                        " Set directory for undo files.
+set undofile                                    " Automatically save undo history.
 
-set autoindent                 " Copy indent to the new line.
-set backspace=indent           " ┐
-set backspace+=eol             " │ Allow `backspace`
-set backspace+=start           " ┘ in insert mode.
+set autoindent                                  " Copy indent to the new line.
+set backspace=indent                            " ┐
+set backspace+=eol                              " │ Allow `backspace`
+set backspace+=start                            " ┘ in insert mode.
 
-set cpoptions+=$               " When making a change, don't
-                               " redisplay the line, and instead,
-                               " put a `$` sign at the end of
-                               " the changed text.
+set cpoptions+=$                                " When making a change, don't
+                                                " redisplay the line, and instead,
+                                                " put a `$` sign at the end of
+                                                " the changed text.
 
-set updatetime=250             " Lower update time to 250 ms
-set cursorline                 " Highlight the current line.
-set encoding=utf-8 nobomb      " Use UTF-8 without BOM.
-set history=5000               " Increase command line history.
-set hlsearch                   " Enable search highlighting.
-set ignorecase                 " Ignore case in search patterns.
-set nowrap                     " Don't wrap text by default
+set updatetime=250                              " Lower update time to 250 ms
+set cursorline                                  " Highlight the current line.
+set encoding=utf-8 nobomb                       " Use UTF-8 without BOM.
+set history=5000                                " Increase command line history.
+set hlsearch                                    " Enable search highlighting.
+set ignorecase                                  " Ignore case in search patterns.
+set nowrap                                      " Don't wrap text by default
 
-set incsearch                  " Highlight search pattern
-                               " as it is being typed.
+set incsearch                                   " Highlight search pattern
+                                                " as it is being typed.
 
-set laststatus=2               " Always show the status line.
+set laststatus=2                                " Always show the status line.
 
-set lazyredraw                 " Do not redraw the screen while
-                               " executing macros, registers
-                               " and other commands that have
-                               " not been typed.
+set lazyredraw                                  " Do not redraw the screen while
+                                                " executing macros, registers
+                                                " and other commands that have
+                                                " not been typed.
 
-set listchars=tab:▸\           " ┐
-set listchars+=trail:·         " │ Use custom symbols to
-set listchars+=eol:↴           " │ represent invisible characters.
-set listchars+=nbsp:_          " ┘
+set listchars=tab:▸\                            " ┐
+set listchars+=trail:·                          " │ Use custom symbols to
+set listchars+=eol:↴                            " │ represent invisible characters.
+set listchars+=nbsp:_                           " ┘
 
-set magic                      " Enable extended regexp.
-set mousehide                  " Hide mouse pointer while typing.
-set noerrorbells               " Disable error bells.
+set magic                                       " Enable extended regexp.
+set mousehide                                   " Hide mouse pointer while typing.
+set noerrorbells                                " Disable error bells.
 
-set nojoinspaces               " When using the join command,
-                               " only insert a single space
-                               " after a `.`, `?`, or `!`.
+set nojoinspaces                                " When using the join command,
+                                                " only insert a single space
+                                                " after a `.`, `?`, or `!`.
 
-set nostartofline              " Kept the cursor on the same column.
-set number                     " Show line number.
+set nostartofline                               " Kept the cursor on the same column.
+set number                                      " Show line number.
 
-set numberwidth=3              " Increase the minimal number of
-                               " columns used for the `line number`.
+set numberwidth=3                               " Increase the minimal number of
+                                                " columns used for the `line number`.
 
-set report=0                   " Report the number of lines changed.
-set ruler                      " Show cursor position.
+set report=0                                    " Report the number of lines changed.
+set ruler                                       " Show cursor position.
 
-set scrolloff=5                " When scrolling, keep the cursor
-                               " 5 lines below the top and 5 lines
-                               " above the bottom of the screen.
+set scrolloff=5                                 " When scrolling, keep the cursor
+                                                " 5 lines below the top and 5 lines
+                                                " above the bottom of the screen.
 
-set shortmess=aAItW            " Avoid all the hit-enter prompts.
-set showcmd                    " Show the command being typed.
-set showmode                   " Show current mode.
-set spelllang=en_us            " Set the spellchecking language.
+set shortmess=aAItW                             " Avoid all the hit-enter prompts.
+set showcmd                                     " Show the command being typed.
+set showmode                                    " Show current mode.
+set spelllang=en_us                             " Set the spellchecking language.
 
-set smartcase                  " Override `ignorecase` option
-                               " if the search pattern contains
-                               " uppercase characters.
+set smartcase                                   " Override `ignorecase` option
+                                                " if the search pattern contains
+                                                " uppercase characters.
 
-set synmaxcol=2500             " Limit syntax highlighting (this
-                               " avoids the very slow redrawing
-                               " when files contain long lines).
+set synmaxcol=2500                              " Limit syntax highlighting (this
+                                                " avoids the very slow redrawing
+                                                " when files contain long lines).
 
-set tabstop=4                  " ┐
-set softtabstop=4              " │ Set global <TAB> settings.
-set shiftwidth=4               " │
-set expandtab                  " ┘
+set tabstop=4                                   " ┐
+set softtabstop=4                               " │ Set global <TAB> settings.
+set shiftwidth=4                                " │
+set expandtab                                   " ┘
 
-set ttyfast                    " Enable fast terminal connection.
+set ttyfast                                     " Enable fast terminal connection.
 
-set visualbell                 " ┐
-set noerrorbells               " │ Disable beeping and window flashing
-set t_vb=                      " ┘ https://vim.wikia.com/wiki/Disable_beeping
+set visualbell                                  " ┐
+set noerrorbells                                " │ Disable beeping and window flashing
+set t_vb=                                       " ┘ https://vim.wikia.com/wiki/Disable_beeping
 
-set wildmenu                   " Enable enhanced command-line
-                               " completion (by hitting <TAB> in
-                               " command mode, Vim will show the
-                               " possible matches just above the
-                               " command line with the first
-                               " match highlighted).
+set wildmenu                                    " Enable enhanced command-line
+                                                " completion (by hitting <TAB> in
+                                                " command mode, Vim will show the
+                                                " possible matches just above the
+                                                " command line with the first
+                                                " match highlighted).
 
-set winminheight=0             " Allow windows to be squashed.
+set winminheight=0                              " Allow windows to be squashed.
 
 if &term =~ '^xterm'
-  let &t_SI .= "\<Esc>[3 q"    " Set cursor shape to blinking underscore
+  let &t_SI .= "\<Esc>[3 q"                     " Set cursor shape to blinking underscore
 endif
 
 "" Colors
@@ -141,19 +139,21 @@ if !has("gui_running")
   let g:solarized_visibility = "low"
 endif
 
-let hour = strftime("%H")       " ┐
-if 6 <= hour && hour < 16       " │
-  set background=light          " │ Automatically set backgroup based on time
-else                            " │ of day.
-  set background=dark           " │
-endif                           " ┘ http://goo.gl/UcErBh
+let hour = strftime("%H")                       " ┐
+if 6 <= hour && hour < 16                       " │
+  set background=light                          " │ Automatically set backgroup based on time
+else                                            " │ of day.
+  set background=dark                           " │
+endif                                           " ┘ http://goo.gl/UcErBh
 
-set t_Co=256                    " Enable full-color support
-colorscheme solarized           " Use custom color scheme.
+set t_Co=256                                    " Enable full-color support
+silent! colorscheme solarized                   " Use custom color scheme.
 
 "" Color 80 column mark and after 120
 let &colorcolumn="80,".join(range(120,999),",")
 
+"" Enable powerline ligatures
+let g:airline_powerline_fonts = 1
 
 "" Key Maps
 "" -----------------------------------------------------------------------------
@@ -161,61 +161,61 @@ let &colorcolumn="80,".join(range(120,999),",")
 "" Remap ':' to ';' - Saves two strokes
 nnoremap ; :
 let mapleader=','
-command -nargs=0 Quit :qa!        " Quit with :Q
-imap jj <ESC>                     " Quick ESC from insert mode
-nmap <leader>w :w!<cr>            " [,w] Fast saves
-map <leader>cs <Esc>:noh<CR>      " [,cs] Clear search.
+command -nargs=0 Quit :qa!                      " Quit with :Q
+imap jj <ESC>                                   " Quick ESC from insert mode
+nmap <leader>w :w!<cr>                          " [,w] Fast saves
+map <leader>cs <Esc>:noh<CR>                    " [,cs] Clear search.
 
-noremap <tab> <c-w><c-w>          " Tab between buffers
-nmap <leader>b :ls                " [,b] Map the buffer list
+noremap <tab> <c-w><c-w>                        " Tab between buffers
+nmap <leader>b :ls                              " [,b] Map the buffer list
 
-nnoremap <C-h> <C-w>h             " ┐
-nnoremap <C-j> <C-w>j             " │
-nnoremap <C-k> <C-w>k             " │ Switch windows with Ctrl + a movement key
-nnoremap <C-l> <C-w>l             " ┘
+nnoremap <C-h> <C-w>h                           " ┐
+nnoremap <C-j> <C-w>j                           " │
+nnoremap <C-k> <C-w>k                           " │ Switch windows with Ctrl + a movement key
+nnoremap <C-l> <C-w>l                           " ┘
 
-if bufwinnr(1)                    " ┐
-  nmap Ä <C-W>< <C-W><            " │
-  nmap Ö <C-W>> <C-W>>            " │
-  nmap ö <C-W>- <C-W>-            " │ Resize buffers
-  nmap ä <C-W>+ <C-W>+            " │
-endif                             " ┘
+if bufwinnr(1)                                  " ┐
+  nmap Ä <C-W>< <C-W><                          " │
+  nmap Ö <C-W>> <C-W>>                          " │
+  nmap ö <C-W>- <C-W>-                          " │ Resize buffers
+  nmap ä <C-W>+ <C-W>+                          " │
+endif                                           " ┘
 
-nmap <leader>s<left>   :leftabove  vnew<cr>    " ┐
-nmap <leader>s<right>  :rightbelow vnew<cr>    " │
-nmap <leader>s<up>     :leftabove  new<cr>     " │ Open new buffers
-nmap <leader>s<down>   :rightbelow new<cr>     " ┘
+nmap <leader>s<left>   :leftabove  vnew<cr>     " ┐
+nmap <leader>s<right>  :rightbelow vnew<cr>     " │
+nmap <leader>s<up>     :leftabove  new<cr>      " │ Open new buffers
+nmap <leader>s<down>   :rightbelow new<cr>      " ┘
 
-map <Esc>Oq 1                  " ┐
-map <Esc>Or 2                  " │
-map <Esc>Os 3                  " │
-map <Esc>Ot 4                  " │
-map <Esc>Ou 5                  " │
-map <Esc>Ov 6                  " │
-map <Esc>Ow 7                  " │
-map <Esc>Ox 8                  " │
-map <Esc>Oy 9                  " │
-map <Esc>Op 0                  " │
-map <Esc>On .                  " │
-map <Esc>OQ /                  " │
-map <Esc>OR *                  " │ Make external keypad work in terminal
-map <kPlus> +                  " │ for Mac OS
-map <Esc>OS -                  " │
-map! <Esc>Oq 1                 " │
-map! <Esc>Or 2                 " │
-map! <Esc>Os 3                 " │
-map! <Esc>Ot 4                 " │
-map! <Esc>Ou 5                 " │
-map! <Esc>Ov 6                 " │
-map! <Esc>Ow 7                 " │
-map! <Esc>Ox 8                 " │
-map! <Esc>Oy 9                 " │
-map! <Esc>Op 0                 " │
-map! <Esc>On .                 " │
-map! <Esc>OQ /                 " │
-map! <Esc>OR *                 " │
-map! <kPlus> +                 " │
-map! <Esc>OS -                 " ┘
+map <Esc>Oq 1                                   " ┐
+map <Esc>Or 2                                   " │
+map <Esc>Os 3                                   " │
+map <Esc>Ot 4                                   " │
+map <Esc>Ou 5                                   " │
+map <Esc>Ov 6                                   " │
+map <Esc>Ow 7                                   " │
+map <Esc>Ox 8                                   " │
+map <Esc>Oy 9                                   " │
+map <Esc>Op 0                                   " │
+map <Esc>On .                                   " │
+map <Esc>OQ /                                   " │
+map <Esc>OR *                                   " │ Make external keypad work in terminal
+map <kPlus> +                                   " │ for Mac OS
+map <Esc>OS -                                   " │
+map! <Esc>Oq 1                                  " │
+map! <Esc>Or 2                                  " │
+map! <Esc>Os 3                                  " │
+map! <Esc>Ot 4                                  " │
+map! <Esc>Ou 5                                  " │
+map! <Esc>Ov 6                                  " │
+map! <Esc>Ow 7                                  " │
+map! <Esc>Ox 8                                  " │
+map! <Esc>Oy 9                                  " │
+map! <Esc>Op 0                                  " │
+map! <Esc>On .                                  " │
+map! <Esc>OQ /                                  " │
+map! <Esc>OR *                                  " │
+map! <kPlus> +                                  " │
+map! <Esc>OS -                                  " ┘
 
 "" Upper/lowercase the word
 nmap <silent> <leader>u mQviwU`Q
@@ -245,6 +245,9 @@ map <leader>W :w !sudo tee %<CR>
 
 "" [,* ] Search and replace the word under the cursor.
 nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+"" fzf
+"set rtp+=/usr/local/opt/fzf
 
 "" Plugins - Markdown
 "" -----------------------------------------------------------------------------

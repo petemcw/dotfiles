@@ -1,0 +1,4 @@
+# Executes commands at login pre-zshrc.
+
+# Ensure Homebrew is added to PATH.
+eval "$(/opt/homebrew/bin/brew shellenv)"

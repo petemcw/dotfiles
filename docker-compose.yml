@@ -3,7 +3,6 @@ services:
   dotfiles:
     build:
       context: .
-    image: petemcw/dotfiles
-    command: bash -c ~/.dotfiles/src/os/setup.sh
+    image: ghcr.io/petemcw/dotfiles
     volumes:
-      - ./src/:/root/.dotfiles/src/
+      - ./:/root/.dotfiles/
