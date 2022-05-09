@@ -61,6 +61,7 @@ dots_configure_brews() {
         dots_brew_install "git-flow"
         dots_brew_install "git"
         dots_brew_install "go"
+        dots_brew_install "heroku/brew/heroku"
         dots_brew_install "jq"
         dots_brew_install "mcrypt"
         dots_brew_install "mysql-client"

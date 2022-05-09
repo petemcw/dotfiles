@@ -5,6 +5,7 @@
 #------------------------------------------------------------------------------#
 .buildpath
 .DS_Store
+.env
 .idea
 .phpstorm.meta.php
 .project
@@ -19,6 +20,7 @@
 *.sublime-project
 *.sublime-workspace
 Desktop.ini
+nbproject/
 node_modules
 npm-debug.log
 sftp-config.json
@@ -27,12 +29,34 @@ Thumbs.db
 # Compiled Source
 #------------------------------------------------------------------------------#
 *.class
+*.com
 *.dll
 *.exe
 *.o
-*.so
-*.com
 *.pyc
+*.so
+
+# Compressed Packages
+#------------------------------------------------------------------------------#
+# It's better to unpack these files and commit the raw source because
+# git has its own built in compression methods.
+*.7z
+*.bzip
+*.deb
+*.dmg
+*.egg
+*.gem
+*.gz
+*.iso
+*.jar
+*.lzma
+*.rar
+*.rpm
+*.tar
+*.tar.gz
+*.xpi
+*.xz
+*.zip
 
 # Temporary Files
 #------------------------------------------------------------------------------#
@@ -43,6 +67,7 @@ Thumbs.db
 *~
 ._*
 .netrwhist
+.orig
 
 # Other VCS
 #------------------------------------------------------------------------------#
@@ -53,3 +78,7 @@ Thumbs.db
 *.log
 *.sql
 *.sqlite
+
+# Other
+#------------------------------------------------------------------------------#
+TODO.md
