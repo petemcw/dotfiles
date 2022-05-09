@@ -149,8 +149,9 @@ endif                                           " ┘ http://goo.gl/UcErBh
 set t_Co=256                                    " Enable full-color support
 silent! colorscheme solarized                   " Use custom color scheme.
 
-"" Color 80 column mark and after 120
+"" Color 120 column mark
 let &colorcolumn="80,".join(range(120,999),",")
+highlight ColorColumn ctermbg=0
 
 "" Enable powerline ligatures
 let g:airline_powerline_fonts = 1

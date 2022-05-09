@@ -5,6 +5,7 @@
 
 # Exports
 export ARCHFLAGS="-arch x86_64"
+export CLICOLOR=1
 export EDITOR="vim"
 export GIT_EDITOR="${EDITOR}"
 export HOMEBREW_NO_ANALYTICS="1"
@@ -12,6 +13,7 @@ export LESS="-F -g -i -M -R -S -w -X -z-4"
 export MANPAGER="less -X"
 export PAGER="less -X"
 export SVN_EDITOR="${EDITOR}"
+export TERM="xterm-256color"
 export VISUAL="vim"
 
 # Prefer US English and use UTF-8 encoding.
@@ -24,3 +26,19 @@ export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
 
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
 export PYTHONIOENCODING="UTF-8"
+
+# Golang
+export GOPATH=/opt/homebrew/go
+export GOROOT=/opt/homebrew/opt/go/libexec
+
+# For my Docker images
+export PUID=501
+export PGID=1000
+
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+export FZF_DEFAULT_OPTS='--height=40% --layout=reverse --inline-info'
+
+# ZSH completions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=black,bold"

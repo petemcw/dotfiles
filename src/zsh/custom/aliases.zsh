@@ -10,7 +10,10 @@ alias csa='composer show --all'
 alias diff='diff -ubB'
 alias fixpermd='find . -type d -exec chmod 755 {} \;'
 alias fixpermf='find . -type f -exec chmod 644 {} \;'
-alias ls="gls --color=always"
+# alias ls="gls --color=always"
+alias ls="/bin/ls -G"
+alias l='ls -alhFG'
+alias ll='ls -lhFG'
 alias psa="ps aux"
 alias ssh='ssh -o ServerAliveInterval=60'
 alias untar='tar -zxvf'
