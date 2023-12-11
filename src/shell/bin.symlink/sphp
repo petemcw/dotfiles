@@ -8,8 +8,8 @@
 # Define read-only script variables
 # -------------------------------------------------------------------------------
 declare -r SPHP_BREW_PREFIX="$(brew --prefix | sed 's#/#\\\/#g')"
-declare -r SPHP_BREW_ARRAY=("5.6" "7.2" "7.3" "7.4" "8.0" "8.1")
-declare -r SPHP_PHP_ARRAY=("php@5.6" "php@7.2" "php@7.3" "php@7.4" "php@8.0" "php@8.1")
+declare -r SPHP_BREW_ARRAY=("7.4" "8.1" "8.2" "8.3")
+declare -r SPHP_PHP_ARRAY=("php@7.4" "php@8.1" "php@8.2" "php@8.3")
 declare -r SPHP_PROFILE="${HOME}/.zshrc"
 declare SPHP_INSTALLED_ARRAY=()
 
@@ -154,8 +154,8 @@ function main_run() {
             echo "sphp: sorry, this script assumes your profile is ${SPHP_PROFILE}."
             clean_exit 1
         else
-            sed -i "/^path=(\/opt\/homebrew\/opt\/php.*/s/^/#/" "${SPHP_PROFILE}"
-            sed -i "/path=(\/opt\/homebrew\/opt\/${REQUESTED_VERSION}/s/^#//" "${SPHP_PROFILE}"
+            sed -i "/^path=(\"\${BREW}\/opt\/php.*/s/^/#/" "${SPHP_PROFILE}"
+            sed -i "/path=(\"\${BREW\}\/opt\/${REQUESTED_VERSION}/s/^#//" "${SPHP_PROFILE}"
         fi
 
         echo "Starting brew services..."

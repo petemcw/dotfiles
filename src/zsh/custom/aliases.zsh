@@ -8,13 +8,13 @@ alias composer='COMPOSER_MEMORY_LIMIT=-1 composer.phar'
 alias cpr='cp -Rpv'
 alias csa='composer show --all'
 alias diff='diff -ubB'
+alias drush='drush.phar'
 alias fixpermd='find . -type d -exec chmod 755 {} \;'
 alias fixpermf='find . -type f -exec chmod 644 {} \;'
-# alias ls="gls --color=always"
-alias ls="/bin/ls -G"
+alias ls='/bin/ls -G'
 alias l='ls -alhFG'
 alias ll='ls -lhFG'
-alias psa="ps aux"
+alias psa='ps aux'
 alias ssh='ssh -o ServerAliveInterval=60'
 alias untar='tar -zxvf'
 alias zipcreate='zip -y -r -q'
@@ -42,13 +42,12 @@ alias drupalcs="phpcs --colors --standard=~/.composer/vendor/drupal/coder/coder_
 alias drupalcbf="phpcbf --standard=~/.composer/vendor/drupal/coder/coder_sniffer/Drupal --extensions='php,module,inc,install,test,profile,theme,js,css,info,txt,md'"
 
 # Magento
-alias ccjs="cache-clean.js"
 alias fpc-test="grep -rl -e 'cacheable=\"false\"' *"
 alias mcc="rm -rf generated/code generated/metadata var/view_preprocessed/pub pub/static/adminhtml pub/static/frontend pub/static/deployed_version.txt"
 alias mcf="rm -rf generated/code generated/metadata var/view_preprocessed/pub pub/static/adminhtml pub/static/frontend pub/static/deployed_version.txt && ccjs all"
 alias m2.perms="find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; && find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \; && chmod u+x bin/magento"
-alias m2.reindex="bin/magento indexer:status |grep required |awk -F '|' '{print \$2}' |xargs bin/magento indexer:reindex"
-alias m2.reindex.cron="n98-2 sys:cron:run indexer_update_all_views && n98-2 sys:cron:run indexer_clean_all_changelogs"
+alias m2.reindex="ddev magento indexer:status |grep required |awk -F '|' '{print \$2}' |xargs ddev magento indexer:reindex"
+alias m2.reindex.cron="ddev n98 sys:cron:run indexer_update_all_views && ddev n98 sys:cron:run indexer_clean_all_changelogs"
 
 # Docker
 alias d="docker"
@@ -64,13 +63,14 @@ alias dps="docker ps"                                                       # Ge
 alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)' # Stop and Remove all containers
 alias dv="docker volume"
 alias elastic-clean="curl -XPUT -H \"Content-Type: application/json\" http://localhost:9200/_cluster/settings -d '{ \"transient\": { \"cluster.routing.allocation.disk.threshold_enabled\": false } }' && curl -XPUT -H \"Content-Type: application/json\" http://localhost:9200/_all/_settings -d '{\"index.blocks.read_only_allow_delete\": null}'"
+alias ghcr.login="echo ${CR_PAT} | docker login ghcr.io -u petemcw --password-stdin"
 
 # MacOS
 # similar to top
 alias top='htop'
 
 # pipe my public key to my clipboard.
-alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+alias pubkey="more ~/.ssh/id_ed25519.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
 # update lookup database
 alias updatedb="sudo /usr/libexec/locate.updatedb"

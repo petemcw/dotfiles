@@ -603,7 +603,6 @@ _import_helpers() {
     local files_to_source=()
     files_to_source=(
         "${DOTS_SCRIPT_PATH}/helpers/brews.sh"
-        "${DOTS_SCRIPT_PATH}/helpers/db.sh"
         "${DOTS_SCRIPT_PATH}/helpers/git.sh"
         "${DOTS_SCRIPT_PATH}/helpers/homebrew.sh"
         "${DOTS_SCRIPT_PATH}/helpers/macos/xcode.sh"

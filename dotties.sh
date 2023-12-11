@@ -166,7 +166,6 @@ dots_run() {
     dots_generate_keys
     dots_configure_git
     dots_configure_xcode
-    dots_configure_db
     dots_configure_homebrew
     dots_configure_brews
     dots_configure_vim

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# Shortcut to DDEV-based Code Sniffer.
+#
+
+/opt/homebrew/bin/ddev exec php ./vendor/bin/phpcs $@

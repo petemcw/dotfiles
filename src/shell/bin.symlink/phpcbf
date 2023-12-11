@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# Shortcut to DDEV-based Code Beautifier.
+#
+
+/opt/homebrew/bin/ddev exec php ./vendor/bin/phpcbf $@

@@ -1,4 +1,0 @@
-#
-# Include all files from the config directory
-#
-!includedir HOME_PATH/.my.cnf.d

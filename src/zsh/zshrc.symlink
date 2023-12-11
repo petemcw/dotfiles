@@ -1,10 +1,12 @@
 # Executes commands at interactive session launch.
 
-# Enable Powerlevel10k instant prompt.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  # Enable Powerlevel10k instant prompt.
+  # Initialization code that may require console input (password prompts, [y/n]
+  # confirmations, etc.) must go above this block; everything else may go below.
+  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
 fi
 
 # Paths for dotfiles
@@ -28,7 +30,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load?
-plugins=(composer docker docker-compose fzf git git-flow-avh gnu-utils gulp heroku n98-magerun zsh-completions)
+plugins=(brew colored-man-pages composer docker docker-compose fd fzf git git-flow-avh gnu-utils)
 
 source "${ZSH}/oh-my-zsh.sh"
 
@@ -36,12 +38,13 @@ source "${ZSH}/oh-my-zsh.sh"
 #-------------------------------------------------------------------------------#
 
 # Custom paths
-path=(${HOME}/.bin ${HOME}/.composer/vendor/bin /opt/homebrew/{bin,sbin} /opt/homebrew/opt/coreutils/libexec/gnubin /opt/homebrew/opt/gnu-sed/libexec/gnubin /opt/homebrew/opt/gnu-tar/libexec/gnubin /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin ${path})
-#path=(/opt/homebrew/opt/php@7.2/bin /opt/homebrew/opt/php@7.2/sbin ${path})
-#path=(/opt/homebrew/opt/php@7.3/bin /opt/homebrew/opt/php@7.3/sbin ${path})
-#path=(/opt/homebrew/opt/php@7.4/bin /opt/homebrew/opt/php@7.4/sbin ${path})
-#path=(/opt/homebrew/opt/php@8.0/bin /opt/homebrew/opt/php@8.0/sbin ${path})
-path=(/opt/homebrew/opt/php@8.1/bin /opt/homebrew/opt/php@8.1/sbin ${path})
+#path=("${BREW}/opt/php@7.4/bin" "${BREW}/opt/php@7.4/sbin" ${path})
+#path=("${BREW}/opt/php@8.1/bin" "${BREW}/opt/php@8.1/sbin" ${path})
+path=("${BREW}/opt/php@8.2/bin" "${BREW}/opt/php@8.2/sbin" ${path})
+path=("/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin" ${path})
+path=("${BREW}/opt/coreutils/libexec/gnubin" ${path})
+path=("${BREW}/opt/gnu-sed/libexec/gnubin" "${BREW}/opt/gnu-tar/libexec/gnubin" ${path})
+path=("${HOME}/.bin" "${HOME}/.composer/vendor/bin" ${path})
 
 # Tracks most-used directories to make cd smarter
 [[ ! -f "${BREW}/etc/profile.d/z.sh" ]] || source "${BREW}/etc/profile.d/z.sh"
@@ -51,7 +54,9 @@ source "${BREW}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${BREW}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # iTerm2 integration
-[[ ! -f "${HOME}/.iterm2_shell_integration.zsh" ]] || source "${HOME}/.iterm2_shell_integration.zsh"
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  [[ ! -f "${HOME}/.iterm2_shell_integration.zsh" ]] || source "${HOME}/.iterm2_shell_integration.zsh"
+fi
 
 # NVM
 [ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"
@@ -63,6 +68,8 @@ source "${BREW}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # versioned repo.
 [[ ! -f "${HOME}/.localrc" ]] || source "${HOME}/.localrc"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  [[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
+fi
 

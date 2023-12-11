@@ -35,6 +35,7 @@ set backupskip=/tmp/*                           " ┐ Don't create backups
 set backupskip+=/private/tmp/*                  " ┘ for certain files.
 set backupdir=~/.vim/backups                    " Set directory for backup files.
 set directory=~/.vim/swaps                      " Set directory for swap files.
+set spellfile=~/.vim/spell/en.utf-8.add         " Set directory spellfile.
 set undodir=~/.vim/undos                        " Set directory for undo files.
 set undofile                                    " Automatically save undo history.
 
@@ -285,7 +286,10 @@ let g:vim_markdown_frontmatter=1
 
   "" Enable spell checking in Git commit messages
   "" ---------------------------------------------------------------------------
+  autocmd FileType markdown setlocal spell
+  autocmd FileType markdown setlocal complete+=kspell
   autocmd FileType gitcommit setlocal spell
+  autocmd FileType gitcommit setlocal complete+=kspell
   autocmd BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
 
   "" PHP Settings

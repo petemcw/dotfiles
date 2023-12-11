@@ -80,6 +80,25 @@ function memcpu() {
     ps auxc | sort -nr -k 4 | head -10
 }
 
+# Fuzzy search
+#-------------------------------------------------------------------------------#
+
+function fh() {
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# DDEV templates
+#-------------------------------------------------------------------------------#
+
+function ddev-setup() {
+    if [ "${1}" = "" ]; then
+        printf "%s\n" "Please specify a DDEV project name."
+    else
+        rsync -avz "${HOME}/Projects/_templates/ddev/magento2/" "${PWD}/" &&
+            sed -i "s/SITENAME/${1}/g" "${PWD}/.ddev/config.yaml"
+    fi
+}
+
 # Project directory shortcut
 #-------------------------------------------------------------------------------#
 

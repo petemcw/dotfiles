@@ -3,5 +3,5 @@
 # Ensure Homebrew is added to PATH.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Ensure Homebrew zsh_completions are added to FPATH.
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# Ensure Homebrew completions are added to FPATH.
+FPATH="${HOME}/.dotfiles/src/zsh/custom/completions:$(brew --prefix)/share/zsh/site-functions:${FPATH}"
